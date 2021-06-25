@@ -12,6 +12,9 @@ Antoniak Rodrigo
 ## Requierements
 
 *OpenJDK 11.
+
 *JavaFX 11.
+
 *Eclipselink 3.0.
+
 *PostgreSQL 12.
