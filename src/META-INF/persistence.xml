@@ -6,6 +6,7 @@ instance" version="2.2" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persiste
         <class>modelo.Cosecha</class>
         <class>modelo.Entrega</class>
         <class>modelo.Registro</class>
+        <class>modelo.Productor</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/laverde"/>
