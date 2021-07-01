@@ -14,7 +14,19 @@ import jakarta.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cosecha {
-   
+
+    @Override
+    public String toString() {
+        return "Cosecha [empleado=" + empleado + ", fecha=" + fecha + ", idCosecha=" + idCosecha + ", lotes=" + lotes
+                + ", secadero=" + secadero + "]";
+    }
+
+    public Cosecha(LocalDate fecha, List<Lote> lotes, Empleado empleado, Secadero secadero) {
+        this.fecha = fecha;
+        this.lotes = lotes;
+        this.empleado = empleado;
+        this.secadero = secadero;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
