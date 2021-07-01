@@ -34,6 +34,15 @@ public class Cosecha {
     private List<Lote> lotes = new ArrayList<>();
 
     private Empleado empleado;
+    private Secadero secadero;
+
+    public Secadero getSecadero() {
+        return secadero;
+    }
+
+    public void setSecadero(Secadero secadero) {
+        this.secadero = secadero;
+    }
 
     public Cosecha() {
         fecha = LocalDate.now();
