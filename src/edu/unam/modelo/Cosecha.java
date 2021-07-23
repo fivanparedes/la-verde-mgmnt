@@ -3,6 +3,7 @@ package modelo;
 import java.time.LocalDate;
 import java.util.*;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,10 +12,10 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cosecha {
-
     @Override
     public String toString() {
         return "Cosecha [empleado=" + empleado + ", fecha=" + fecha + ", idCosecha=" + idCosecha + ", lotes=" + lotes
@@ -79,7 +80,6 @@ public class Cosecha {
     public void setFecha(LocalDate f) {
         fecha = f;
     }
-
     public List<Lote> getLotes() {
         return lotes;
     }
@@ -87,4 +87,5 @@ public class Cosecha {
     public void setLotes(List<Lote> lotes) {
         this.lotes = lotes;
     }
+
 }

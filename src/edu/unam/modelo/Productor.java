@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.*;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Productor {
     private String cuit;
     private String apellidos;
     private String nombres;
-
+  
     @OneToMany(mappedBy = "productor")
     private List<Lote> lotes = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class Productor {
         this.setCuit("[CUIT IND.]");
         this.setApellidos("[APELLIDO IND.]");
         this.setNombres("[NOMBRE IND.]");
+
     }
 
     /* Todos los argumentos son requeridos para dar de alta un Productor */
@@ -64,8 +66,8 @@ public class Productor {
     public void setNombres(String n) {
         nombres = n;
     }
-
     public void setLotes(List<Lote> lt) {
         lotes = lt;
     }
+
 }
