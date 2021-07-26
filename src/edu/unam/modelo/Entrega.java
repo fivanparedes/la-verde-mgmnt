@@ -7,21 +7,22 @@ import jakarta.persistence.Entity;
 @Entity
 public class Entrega extends Cosecha {
     private float pesoEnt;
-    
+
     public Entrega() {
         super();
-        pesoEnt = 0.0f;
+        this.setPesoEnt(0.0f);
     }
 
-    public Entrega(float p, LocalDate f) {
-        super(f);
-        pesoEnt = p;
+    public Entrega(float pesoEnt, LocalDate fecha) {
+        super(fecha);
+        this.setPesoEnt(pesoEnt);
     }
+
     public float getPesoEnt() {
-        return pesoEnt;
+        return this.pesoEnt;
     }
 
-    public void setPesoEnt(float p) {
-        pesoEnt = p;
+    public void setPesoEnt(float pesoEnt) {
+        this.pesoEnt = pesoEnt;
     }
 }

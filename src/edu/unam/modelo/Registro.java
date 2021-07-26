@@ -10,20 +10,19 @@ public class Registro extends Cosecha {
 
     public Registro() {
         super();
-        pesoReg = 0.0f;
+        this.setPesoReg(0.0f);
     }
 
-    public Registro(float p, LocalDate f) {
-        super(f);
-        pesoReg = p;
+    public Registro(float pesoReg, LocalDate fecha) {
+        super(fecha);
+        this.setPesoReg(pesoReg);
     }
 
     public float getPesoReg() {
-        return pesoReg;
+        return this.pesoReg;
     }
 
-    public void setPesoReg(float p) {
-        pesoReg = p;
+    public void setPesoReg(float pesoReg) {
+        this.pesoReg = pesoReg;
     }
-    
 }
