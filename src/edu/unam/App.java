@@ -1,4 +1,4 @@
-import modelo.*;
+package edu.unam;
 
 public class App {
     public static void main(String[] args) throws Exception {
