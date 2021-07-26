@@ -1,11 +1,11 @@
-package servicios;
+package edu.unam.servicios;
 
-import repositorio.*;
+import edu.unam.repositorio.*;
 
 import java.util.List;
 
-import modelo.Lote;
-import modelo.Productor;
+import edu.unam.modelo.Lote;
+import edu.unam.modelo.Productor;
 
 public class ServicioProductor {
 
