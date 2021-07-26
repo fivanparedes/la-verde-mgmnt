@@ -1,4 +1,4 @@
-package repositorio;
+package edu.unam.repositorio;
 
 import java.util.List;
 import jakarta.persistence.EntityManager;

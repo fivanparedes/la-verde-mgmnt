@@ -1,4 +1,4 @@
-package modelo;
+package edu.unam.modelo;
 
 import java.time.LocalDate;
 

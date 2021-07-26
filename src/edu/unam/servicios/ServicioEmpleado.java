@@ -1,8 +1,11 @@
 package edu.unam.servicios;
 
-import edu.unam.repositorio.Repositorio.*;
-import edu.unam.modelo.Empleado.*;
-import jdk.tools.jlink.resources.plugins;
+import edu.unam.repositorio.Repositorio;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import edu.unam.modelo.Empleado;
 
 public class ServicioEmpleado {
     private Repositorio repo;
@@ -19,9 +22,8 @@ public class ServicioEmpleado {
         return this.repo.buscar(Empleado.class, idEmpleado);
     }
 
-    public void agregarEmpleado(String nombres, String apellidos, Departamento departamento) {
-        if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || 
-            departamento == null) {
+    public void agregarEmpleado(String nombres, String apellidos, int dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, long cuil) {
+        if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || legajo.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repo.iniciarTransaccion();
@@ -31,7 +33,7 @@ public class ServicioEmpleado {
     }
 
     // cambiar valor devuelto (por ejemplo: True ok, False problemas)
-    public void editarEmpleado(Long idEmpleado, String nombres, String apellidos, Departamento departamento) {
+    public void editarEmpleado(Long idEmpleado, String nombres, String apellidos) {
         if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || 
             departamento == null) {
             throw new IllegalArgumentException("Faltan datos");
@@ -43,11 +45,11 @@ public class ServicioEmpleado {
             empleado.setNombres(nombres);
             // implementar comparable o comparator
             // o si el id es unico pueden compararar por id
-            if (! empleado.getDepartamento().equals(departamento)) {
+            /* if (! empleado.getDepartamento().equals(departamento)) {
                 empleado.getDepartamento().getEmpleados().remove(empleado);
                 empleado.setDepartamento(departamento);
                 departamento.getEmpleados().add(empleado);
-            }
+            } */
             this.repo.modificar(empleado);
             this.repo.confirmarTransaccion();
         } else {
