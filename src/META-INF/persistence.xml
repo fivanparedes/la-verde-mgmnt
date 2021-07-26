@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-
 instance" version="2.2" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-    <persistence-unit name="ProductosPU" transaction-type="RESOURCE_LOCAL">      
+    <persistence-unit name="LaVerdeSA" transaction-type="RESOURCE_LOCAL">      
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>modelo.Cosecha</class>
         <class>modelo.Entrega</class>
         <class>modelo.Registro</class>
+        <class>modelo.Empleado</class>
         <class>modelo.Productor</class>
+        <class>modelo.Lote</class>
+        <class>modelo.Cuadro</class>
+        <class>modelo.Secadero</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/laverde"/>
@@ -14,7 +18,6 @@ instance" version="2.2" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persiste
             <property name="jakarta.persistence.jdbc.user" value="postgres" />
             <property name="jakarta.persistence.jdbc.password" value="postgres" />
             <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-            <!-- <property name="eclipselink.logging.level" value="FINEST" /> -->
         </properties>
     </persistence-unit>
 </persistence>
