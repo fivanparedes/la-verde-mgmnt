@@ -4,7 +4,6 @@ import edu.unam.repositorio.*;
 
 import java.util.List;
 
-import edu.unam.modelo.Lote;
 import edu.unam.modelo.Productor;
 
 public class ServicioProductor {
@@ -55,7 +54,7 @@ public class ServicioProductor {
         this.repositorio.iniciarTransaccion();
         Productor productor = this.repositorio.buscar(Productor.class, idProductor);
         
-        //Me queda la duda si debe estar en la sentencia if la funcion getLotes().isEmpty()
+        //En este caso si el productor tiene asignado lotes no se lo puede eliminar
         if (productor != null && productor.getLotes().isEmpty()){
             this.repositorio.eliminar(productor);
             this.repositorio.confirmarTransaccion();
@@ -63,15 +62,6 @@ public class ServicioProductor {
         } else {
             this.repositorio.descartarTransaccion();
             return 1;
-        }
-    }
-
-    public void asignarLote(int idProductor, int idLote){
-        this.repositorio.iniciarTransaccion();
-        Productor productor = this.repositorio.buscar(Productor.class, idProductor);
-        Lote lote = this.repositorio.buscar(Lote.class, idLote);
-        if (productor != null && lote != null){
-            productor.getLotes().add(lote);
         }
     }
 }
