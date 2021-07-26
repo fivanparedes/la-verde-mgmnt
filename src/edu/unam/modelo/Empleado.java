@@ -1,4 +1,4 @@
-package modelo;
+package edu.unam.modelo;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -10,7 +10,7 @@ import jakarta.persistence.OneToMany;
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idEmpleado;
+    private long idEmpleado;
 
     @OneToMany(mappedBy = "empleado")
     private List<Cosecha> cosechas = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Empleado {
         this.nacimiento = LocalDate.now();
         this.cuil = 119999991;
     }
-    public Empleado(int idEmpleado, String legajo, int dni, String apellidos, String nombres, LocalDate ingreso,
+    public Empleado(String legajo, int dni, String apellidos, String nombres, LocalDate ingreso,
             LocalDate nacimiento, long cuil) {
         this.legajo = legajo;
         this.dni = dni;
@@ -42,55 +42,49 @@ public class Empleado {
         this.nacimiento = nacimiento;
         this.cuil = cuil;
     }
-
-    public int getIdEmpleado() {
+    public long getIdEmpleado() {
         return idEmpleado;
-    }
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
     }
     public String getLegajo() {
         return legajo;
     }
-    public void setLegajo(String legajo) {
-        this.legajo = legajo;
-    }
     public int getDni() {
         return dni;
-    }
-    public void setDni(int dni) {
-        this.dni = dni;
     }
     public String getApellidos() {
         return apellidos;
     }
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
     public String getNombres() {
         return nombres;
-    }
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
     }
     public LocalDate getIngreso() {
         return ingreso;
     }
-    public void setIngreso(LocalDate ingreso) {
-        this.ingreso = ingreso;
-    }
     public LocalDate getNacimiento() {
         return nacimiento;
-    }
-    public void setNacimiento(LocalDate nacimiento) {
-        this.nacimiento = nacimiento;
     }
     public long getCuil() {
         return cuil;
     }
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+    public void setIngreso(LocalDate ingreso) {
+        this.ingreso = ingreso;
+    }
+    public void setNacimiento(LocalDate nacimiento) {
+        this.nacimiento = nacimiento;
+    }
     public void setCuil(long cuil) {
         this.cuil = cuil;
     }
-   
-
 }

@@ -1,4 +1,4 @@
-package modelo;
+package edu.unam.modelo;
 
 import java.util.*;
 
@@ -23,44 +23,37 @@ public class Secadero {
         this.razonSocial = "[RAZON SOCIAL IND.]";
     }
 
-    public int getIdSecadero() {
-        return idSecadero;
-    }
-
-    public void setIdSecadero(int idSecadero) {
-        this.idSecadero = idSecadero;
-    }
-
-    public long getCuit() {
-        return cuit;
-    }
-
-    public void setCuit(long cuit) {
-        this.cuit = cuit;
-    }
-
-    public String getRazonSocial() {
-        return razonSocial;
-    }
-
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
-    }
-
-    public List<Cosecha> getCosechas() {
-        return cosechas;
-    }
-
-    public void setCosechas(List<Cosecha> cosechas) {
-        this.cosechas = cosechas;
-    }
-
     public Secadero(long cuit, String razonSocial, List<Cosecha> cosechas) {
         this.cuit = cuit;
         this.razonSocial = razonSocial;
         this.cosechas = cosechas;
     }
 
-   
-    
+    public int getIdSecadero() {
+        return idSecadero;
+    }
+
+    public long getCuit() {
+        return cuit;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public List<Cosecha> getCosechas() {
+        return cosechas;
+    }
+
+    public void setCuit(long cuit) {
+        this.cuit = cuit;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
+    public void setCosechas(List<Cosecha> cosechas) {
+        this.cosechas = cosechas;
+    }
 }
