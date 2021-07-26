@@ -1,4 +1,4 @@
-package modelo;
+package edu.unam.modelo;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -10,7 +10,7 @@ import jakarta.persistence.OneToMany;
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idEmpleado;
+    private long idEmpleado;
 
     @OneToMany(mappedBy = "empleado")
     private List<Cosecha> cosechas = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Empleado {
         this.nacimiento = LocalDate.now();
         this.cuil = 119999991;
     }
-    public Empleado(int idEmpleado, String legajo, int dni, String apellidos, String nombres, LocalDate ingreso,
+    public Empleado(long idEmpleado, String legajo, int dni, String apellidos, String nombres, LocalDate ingreso,
             LocalDate nacimiento, long cuil) {
         this.legajo = legajo;
         this.dni = dni;
@@ -42,7 +42,7 @@ public class Empleado {
         this.nacimiento = nacimiento;
         this.cuil = cuil;
     }
-    public int getIdEmpleado() {
+    public long getIdEmpleado() {
         return idEmpleado;
     }
     public String getLegajo() {
