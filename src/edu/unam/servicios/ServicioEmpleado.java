@@ -15,7 +15,7 @@ public class ServicioEmpleado {
     }
 
     public List<Empleado> listarEmpleados() {
-        return this.repo.buscarOrdenAsc(Empleado.class, idEmpleado);
+        return this.repo.buscarTodos(Empleado.class);
     }
 
     public Empleado buscarEmpleado(Long idEmpleado) {
@@ -27,15 +27,14 @@ public class ServicioEmpleado {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repo.iniciarTransaccion();
-        Empleado empleado = new Empleado(nombres.toUpperCase().trim(), apellidos.toUpperCase().trim(), departamento);
+        Empleado empleado = new Empleado(legajo.toUpperCase().trim(), dni, apellidos.toUpperCase().trim(), nombres.toUpperCase().trim(), fechaIngreso, nacimiento, cuil);
         this.repo.insertar(empleado);
         this.repo.confirmarTransaccion();
     }
 
     // cambiar valor devuelto (por ejemplo: True ok, False problemas)
     public void editarEmpleado(Long idEmpleado, String nombres, String apellidos) {
-        if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || 
-            departamento == null) {
+        if (nombres.trim().length() == 0 || apellidos.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repo.iniciarTransaccion();
@@ -60,8 +59,8 @@ public class ServicioEmpleado {
     public int eliminarEmpleado(Long idEmpleado) {
         this.repo.iniciarTransaccion();
         Empleado empleado = this.repo.buscar(Empleado.class, idEmpleado);
-        // como se soluciona??
-        if (empleado != null && empleado.getProyectos().isEmpty() ) {
+        // hacer todos los chequeos necesarios antes de eliminar
+        if (empleado != null) {
             this.repo.eliminar(empleado);
             this.repo.confirmarTransaccion();
             return 0;
