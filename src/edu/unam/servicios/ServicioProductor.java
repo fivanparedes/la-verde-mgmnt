@@ -4,6 +4,7 @@ import repositorio.*;
 
 import java.util.List;
 
+import modelo.Lote;
 import modelo.Productor;
 
 public class ServicioProductor {
@@ -32,7 +33,6 @@ public class ServicioProductor {
         this.repositorio.confirmarTransaccion();
     }
 
-    //Falta asignar el lote
     public void editarProductor(int idProductor, String cuit, String apellidos, String nombres) {
         if (cuit.trim().length() == 0 || apellidos.trim().length() == 0 || nombres.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
@@ -63,6 +63,15 @@ public class ServicioProductor {
         } else {
             this.repositorio.descartarTransaccion();
             return 1;
+        }
+    }
+
+    public void asignarLote(int idProductor, int idLote){
+        this.repositorio.iniciarTransaccion();
+        Productor productor = this.repositorio.buscar(Productor.class, idProductor);
+        Lote lote = this.repositorio.buscar(Lote.class, idLote);
+        if (productor != null && lote != null){
+            productor.getLotes().add(lote);
         }
     }
 }
