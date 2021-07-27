@@ -31,11 +31,11 @@ public class Cosecha {
     private Secadero secadero;
 
     public Cosecha() {
-        setFecha(LocalDate.now());
+        this.setFecha(LocalDate.now());
     }
 
     public Cosecha(LocalDate fecha) {
-        setFecha(fecha);
+        this.setFecha(fecha);
     }
 
     public Cosecha(LocalDate fecha, List<Cuadro> cuadros, List<Empleado> empleados, Secadero secadero) {
