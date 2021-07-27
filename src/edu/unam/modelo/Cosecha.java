@@ -3,14 +3,14 @@ package edu.unam.modelo;
 import java.time.LocalDate;
 import java.util.*;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -21,70 +21,69 @@ public class Cosecha {
 
     private LocalDate fecha;
 
-    @OneToMany(mappedBy = "cosecha")
+    @ManyToMany(targetEntity = modelo.Cuadro.class)
     private List<Cuadro> cuadros = new ArrayList<>();
 
-    private Empleado empleado;
+    @ManyToMany(targetEntity = modelo.Empleado.class)
+    private List<Empleado> empleados;
+
+    @ManyToOne(targetEntity = modelo.Secadero.class)
     private Secadero secadero;
 
-    public void setSecadero(Secadero secadero) {
-        this.secadero = secadero;
-    }
-
     public Cosecha() {
-        fecha = LocalDate.now();
+        setFecha(LocalDate.now());
     }
 
-    public Cosecha(LocalDate f) {
-        fecha = f;
+    public Cosecha(LocalDate fecha) {
+        setFecha(fecha);
     }
 
-    public Cosecha(LocalDate fecha, List<Cuadro> cuadros, Empleado empleado, Secadero secadero) {
-        this.fecha = fecha;
-        this.cuadros = cuadros;
-        this.empleado = empleado;
-        this.secadero = secadero;
-    }
-
-    public Secadero getSecadero() {
-        return secadero;
+    public Cosecha(LocalDate fecha, List<Cuadro> cuadros, List<Empleado> empleados, Secadero secadero) {
+        this.setFecha(fecha);
+        this.setCuadros(cuadros);
+        this.setEmpleados(empleados);
+        this.setSecadero(secadero);
     }
 
     public int getIdCosecha() {
-        return idCosecha;
+        return this.idCosecha;
     }
 
     public LocalDate getFecha() {
-        return fecha;
+        return this.fecha;
     }
 
     public List<Cuadro> getCuadros() {
-        return cuadros;
+        return this.cuadros;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public List<Empleado> getEmpleados() {
+        return this.empleados;
     }
 
-    public void setIdCosecha(int id) {
-        idCosecha = id;
+    public Secadero getSecadero() {
+        return this.secadero;
     }
 
-    public void setFecha(LocalDate f) {
-        fecha = f;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public void setCuadros(List<Cuadro> cuadros) {
         this.cuadros = cuadros;
     }
 
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
     }
 
-    @Override
-    public String toString() {
-        return "Cosecha [empleado=" + empleado + ", fecha=" + fecha + ", idCosecha=" + idCosecha + ", cuadros=" + cuadros
-                + ", secadero=" + secadero + "]";
+    public void setSecadero(Secadero secadero) {
+        this.secadero = secadero;
     }
+
+    /*
+     * @Override public String toString() { return "Cosecha [empleado=" + empleado +
+     * ", fecha=" + fecha + ", idCosecha=" + idCosecha + ", cuadros=" + cuadros +
+     * ", secadero=" + secadero + "]"; }
+     */
 }

@@ -18,56 +18,51 @@ public class Productor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idProductor;
 
-    private String cuit;
+    private long cuit;
     private String apellidos;
     private String nombres;
   
-    @OneToMany(mappedBy = "productor")
+    @OneToMany(targetEntity = modelo.Lote.class, mappedBy = "productor")
     private List<Lote> lotes = new ArrayList<>();
 
     public Productor() {
-        this.setCuit("[CUIT IND.]");
-        this.setApellidos("[APELLIDO IND.]");
-        this.setNombres("[NOMBRE IND.]");
-
+        this.setCuit(0);
+        this.setApellidos("");
+        this.setNombres("");
     }
 
     /* Todos los argumentos son requeridos para dar de alta un Productor */
-    public Productor(String c, String a, String n) {
-        this.setCuit(c);
-        this.setApellidos(a);
+    public Productor(long cuit, String apellidos, String n) {
+        this.setCuit(cuit);
+        this.setApellidos(apellidos);
         this.setNombres(n);
     }
     
-    public String getCuit() {
-        return cuit;
+    public long getCuit() {
+        return this.cuit;
     }
 
     public String getApellidos() {
-        return apellidos;
+        return this.apellidos;
     }
 
     public String getNombres() {
-        return nombres;
+        return this.nombres;
     }
 
     public List<Lote> getLotes() {
-        return lotes;
+        return this.lotes;
     }
 
-    public void setCuit(String c) {
-        cuit = c;
+    public void setCuit(long cuit) {
+        this.cuit = cuit;
     }
 
-    public void setApellidos(String a) {
-        apellidos = a;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public void setNombres(String n) {
-        nombres = n;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
-    public void setLotes(List<Lote> lt) {
-        lotes = lt;
-    }
-
 }

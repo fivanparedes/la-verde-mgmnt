@@ -4,8 +4,8 @@ import java.util.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 public class Cuadro {
     @Id
@@ -17,7 +17,7 @@ public class Cuadro {
     @ManyToOne
     private Lote lote;
 
-    @OneToMany(mappedBy = "cuadro")
+    @ManyToMany(targetEntity = modelo.Cosecha.class, mappedBy = "cuadros")
     private List<Cosecha> cosechas = new ArrayList<>();
 
     public Cuadro() {

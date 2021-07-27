@@ -15,34 +15,34 @@ public class Secadero {
     private long cuit;
     private String razonSocial;
 
-    @OneToMany(mappedBy = "secadero")
+    @OneToMany(targetEntity = modelo.Cosecha.class, mappedBy = "secadero")
     private List<Cosecha> cosechas = new ArrayList<>();
 
     public Secadero() {
-        this.cuit = 119999911;
-        this.razonSocial = "[RAZON SOCIAL IND.]";
+        this.setCuit(0);
+        this.setRazonSocial("");;
     }
 
     public Secadero(long cuit, String razonSocial, List<Cosecha> cosechas) {
-        this.cuit = cuit;
-        this.razonSocial = razonSocial;
-        this.cosechas = cosechas;
+        this.setCuit(cuit);
+        this.setRazonSocial(razonSocial);
+        this.setCosechas(cosechas);
     }
 
     public int getIdSecadero() {
-        return idSecadero;
+        return this.idSecadero;
     }
 
     public long getCuit() {
-        return cuit;
+        return this.cuit;
     }
 
     public String getRazonSocial() {
-        return razonSocial;
+        return this.razonSocial;
     }
 
     public List<Cosecha> getCosechas() {
-        return cosechas;
+        return this.cosechas;
     }
 
     public void setCuit(long cuit) {

@@ -5,14 +5,14 @@ import java.util.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idEmpleado;
 
-    @OneToMany(mappedBy = "empleado")
+    @ManyToMany(targetEntity = modelo.Cosecha.class, mappedBy = "empleados")
     private List<Cosecha> cosechas = new ArrayList<>();
 
     private String legajo;
@@ -24,66 +24,86 @@ public class Empleado {
     private long cuil;
 
     public Empleado() {
-        this.legajo = "[LEGAJO IND.]";
-        this.dni = 999999;
-        this.apellidos = "[APELLIDO IND.]";
-        this.nombres = "[NOMBRE IND.]";
-        this.ingreso = LocalDate.now();
-        this.nacimiento = LocalDate.now();
-        this.cuil = 119999991;
+        this.setLegajo("");
+        this.setDni(0);
+        this.setApellidos("");
+        this.setNombres("");
+        this.setIngreso(LocalDate.now());
+        this.setNacimiento(LocalDate.now());
+        this.setCuil(0);
     }
-    public Empleado(String legajo, int dni, String apellidos, String nombres, LocalDate ingreso,
-            LocalDate nacimiento, long cuil) {
-        this.legajo = legajo;
-        this.dni = dni;
-        this.apellidos = apellidos;
-        this.nombres = nombres;
-        this.ingreso = ingreso;
-        this.nacimiento = nacimiento;
-        this.cuil = cuil;
+
+    public Empleado(String legajo, int dni, String apellidos, String nombres, LocalDate ingreso, LocalDate nacimiento,
+            long cuil) {
+        this.setLegajo(legajo);
+        this.setDni(dni);
+        this.setApellidos(apellidos);
+        this.setNombres(nombres);
+        this.setIngreso(ingreso);
+        this.setNacimiento(nacimiento);
+        this.setCuil(cuil);
     }
+
     public long getIdEmpleado() {
-        return idEmpleado;
+        return this.idEmpleado;
     }
+
+    public List<Cosecha> getCosechas() {
+        return this.cosechas;
+    }
+
     public String getLegajo() {
-        return legajo;
+        return this.legajo;
     }
+
     public int getDni() {
-        return dni;
+        return this.dni;
     }
+
     public String getApellidos() {
-        return apellidos;
+        return this.apellidos;
     }
+
     public String getNombres() {
-        return nombres;
+        return this.nombres;
     }
+
     public LocalDate getIngreso() {
-        return ingreso;
+        return this.ingreso;
     }
+
     public LocalDate getNacimiento() {
-        return nacimiento;
+        return this.nacimiento;
     }
+
     public long getCuil() {
-        return cuil;
+        return this.cuil;
     }
+
     public void setLegajo(String legajo) {
         this.legajo = legajo;
     }
+
     public void setDni(int dni) {
         this.dni = dni;
     }
+
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
+
     public void setIngreso(LocalDate ingreso) {
         this.ingreso = ingreso;
     }
+
     public void setNacimiento(LocalDate nacimiento) {
         this.nacimiento = nacimiento;
     }
+
     public void setCuil(long cuil) {
         this.cuil = cuil;
     }
