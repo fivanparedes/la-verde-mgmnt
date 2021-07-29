@@ -22,18 +22,18 @@ public class ServicioProductor {
         return this.repo.buscar(Productor.class, idProductor);
     }
 
-    public void agregarProdutor(String cuit, String apellidos, String nombres) {
-        if (cuit.trim().length() == 0 || apellidos.trim().length() == 0 || nombres.trim().length() == 0) {
+    public void agregarProdutor(Long cuit, String apellidos, String nombres) {
+        if (cuit == null || apellidos.trim().length() == 0 || nombres.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repo.iniciarTransaccion();
-        Productor productor = new Productor(cuit.toUpperCase().trim(), apellidos.toUpperCase().trim(), nombres.toUpperCase().trim());
+        Productor productor = new Productor(cuit, apellidos.toUpperCase().trim(), nombres.toUpperCase().trim());
         this.repo.insertar(productor);
         this.repo.confirmarTransaccion();
     }
 
-    public void editarProductor(int idProductor, String cuit, String apellidos, String nombres) {
-        if (cuit.trim().length() == 0 || apellidos.trim().length() == 0 || nombres.trim().length() == 0) {
+    public void editarProductor(int idProductor, Long cuit, String apellidos, String nombres) {
+        if (cuit == null || apellidos.trim().length() == 0 || nombres.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repo.iniciarTransaccion();

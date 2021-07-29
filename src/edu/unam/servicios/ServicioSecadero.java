@@ -23,8 +23,8 @@ public class ServicioSecadero {
         return this.repo.buscar(Secadero.class, idSecadero);
     }
 
-    public void agregarSecadero(String cuit, String razonSocial, List<Cosecha> cosechas) {
-        if (cuit.trim().length() == 0 || razonSocial.trim().length() == 0 || nombres.trim().length() == 0) {
+    public void agregarSecadero(Long cuit, String razonSocial, List<Cosecha> cosechas) {
+        if (cuit != null || razonSocial.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repo.iniciarTransaccion();
