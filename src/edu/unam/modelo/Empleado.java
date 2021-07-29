@@ -1,7 +1,7 @@
 package edu.unam.modelo;
 
-import java.time.LocalDate;
 import java.util.*;
+import java.time.LocalDate;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,7 +12,7 @@ public class Empleado {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idEmpleado;
 
-    @ManyToMany(targetEntity = modelo.Cosecha.class, mappedBy = "empleados")
+    @ManyToMany(targetEntity = Cosecha.class, mappedBy = "empleados")
     private List<Cosecha> cosechas = new ArrayList<>();
 
     private String legajo;

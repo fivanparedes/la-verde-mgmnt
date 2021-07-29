@@ -17,7 +17,7 @@ public class Cuadro {
     @ManyToOne
     private Lote lote;
 
-    @ManyToMany(targetEntity = modelo.Cosecha.class, mappedBy = "cuadros")
+    @ManyToMany(targetEntity = Cosecha.class, mappedBy = "cuadros")
     private List<Cosecha> cosechas = new ArrayList<>();
 
     public Cuadro() {
