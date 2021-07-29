@@ -5,7 +5,6 @@ import edu.unam.repositorio.Repositorio;
 import java.time.LocalDate;
 import java.util.List;
 
-import edu.unam.modelo.Cosecha;
 import edu.unam.modelo.Empleado;
 
 public class ServicioEmpleado extends Servicio {
@@ -19,13 +18,6 @@ public class ServicioEmpleado extends Servicio {
 
     public Empleado buscarEmpleado(long idEmpleado) {
         return this.repositorio.buscar(Empleado.class, idEmpleado);
-    }
-
-    // Esto recupera la lista de cosechas correspondientes al empleado segun su ID.
-    // Esto es util ya que busca a un empleado existente en la BBDD para insertar la lista en una tabla visual.
-    public List<Cosecha> extraerCosechas(long idEmpleado) {
-        Empleado emp = this.repositorio.buscar(Empleado.class, idEmpleado);
-        return emp.getCosechas();
     }
 
     //Hacer validaciones extra de ser necesario
