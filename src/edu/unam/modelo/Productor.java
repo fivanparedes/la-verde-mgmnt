@@ -33,10 +33,10 @@ public class Productor {
     }
 
     /* Todos los argumentos son requeridos para dar de alta un Productor */
-    public Productor(String c, String a, String n) {
-        this.setCuit(c);
-        this.setApellidos(a);
-        this.setNombres(n);
+    public Productor(String cuit, String apellidos, String nombres) {
+        this.setCuit(cuit);
+        this.setApellidos(apellidos);
+        this.setNombres(nombres);
     }
     
     public String getCuit() {
@@ -56,18 +56,17 @@ public class Productor {
     }
 
     public void setCuit(String c) {
-        cuit = c;
+        this.cuit = c;
     }
 
     public void setApellidos(String a) {
-        apellidos = a;
+        this.apellidos = a;
     }
 
     public void setNombres(String n) {
-        nombres = n;
+        this.nombres = n;
     }
     public void setLotes(List<Lote> lt) {
-        lotes = lt;
+        this.lotes = lt;
     }
-
 }
