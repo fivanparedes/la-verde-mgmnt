@@ -17,7 +17,7 @@ public class Productor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idProductor;
 
-    private long cuit;
+    private Long cuit;
     private String apellidos;
     private String nombres;
   
@@ -25,26 +25,19 @@ public class Productor {
     private List<Lote> lotes = new ArrayList<>();
 
     public Productor() {
-        this.setCuit(0);
+        this.setCuit((long) 0);
         this.setApellidos("");
         this.setNombres("");
     }
 
     /* Todos los argumentos son requeridos para dar de alta un Productor */
-<<<<<<< HEAD
-    public Productor(String cuit, String apellidos, String nombres) {
+    public Productor(Long cuit, String apellidos, String nombres) {
         this.setCuit(cuit);
         this.setApellidos(apellidos);
         this.setNombres(nombres);
-=======
-    public Productor(long cuit, String apellidos, String n) {
-        this.setCuit(cuit);
-        this.setApellidos(apellidos);
-        this.setNombres(n);
->>>>>>> origin/main
     }
     
-    public long getCuit() {
+    public Long getCuit() {
         return this.cuit;
     }
 
@@ -60,23 +53,7 @@ public class Productor {
         return this.lotes;
     }
 
-<<<<<<< HEAD
-    public void setCuit(String c) {
-        this.cuit = c;
-    }
-
-    public void setApellidos(String a) {
-        this.apellidos = a;
-    }
-
-    public void setNombres(String n) {
-        this.nombres = n;
-    }
-    public void setLotes(List<Lote> lt) {
-        this.lotes = lt;
-    }
-=======
-    public void setCuit(long cuit) {
+    public void setCuit(Long cuit) {
         this.cuit = cuit;
     }
 
@@ -87,5 +64,4 @@ public class Productor {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
->>>>>>> origin/main
 }

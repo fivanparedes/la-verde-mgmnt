@@ -12,7 +12,7 @@ public class Secadero {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idSecadero;
 
-    private String cuit;
+    private long cuit;
     private String razonSocial;
 
     @OneToMany(targetEntity = Cosecha.class, mappedBy = "secadero")
@@ -23,17 +23,10 @@ public class Secadero {
         this.setRazonSocial("");;
     }
 
-<<<<<<< HEAD
-    public Secadero(String cuit, String razonSocial, List<Cosecha> cosechas) {
-        this.cuit = cuit;
-        this.razonSocial = razonSocial;
-        this.cosechas = cosechas;
-=======
     public Secadero(long cuit, String razonSocial, List<Cosecha> cosechas) {
         this.setCuit(cuit);
         this.setRazonSocial(razonSocial);
         this.setCosechas(cosechas);
->>>>>>> origin/main
     }
 
     public int getIdSecadero() {
