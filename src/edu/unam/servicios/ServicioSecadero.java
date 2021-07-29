@@ -54,8 +54,9 @@ public class ServicioSecadero {
     public int eliminarSecadero(int idSecadero) {
         this.repo.iniciarTransaccion();
         Secadero secadero = this.repo.buscar(Secadero.class, idSecadero);
-
-        if(secadero != null){
+        
+        //chequeos necesarios antes de eliminar
+        if(secadero != null && secadero.getCosechas().isEmpty()){
             this.repo.eliminar(secadero);
             this.repo.confirmarTransaccion();
             return 0;
