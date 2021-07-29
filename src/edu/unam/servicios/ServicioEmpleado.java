@@ -17,13 +17,13 @@ public class ServicioEmpleado extends Servicio {
         return this.repositorio.buscarTodos(Empleado.class);
     }
 
-    public Empleado buscarEmpleado(Long idEmpleado) {
+    public Empleado buscarEmpleado(long idEmpleado) {
         return this.repositorio.buscar(Empleado.class, idEmpleado);
     }
 
     // Esto recupera la lista de cosechas correspondientes al empleado segun su ID.
     // Esto es util ya que busca a un empleado existente en la BBDD para insertar la lista en una tabla visual.
-    public List<Cosecha> extraerCosechas(int idEmpleado) {
+    public List<Cosecha> extraerCosechas(long idEmpleado) {
         Empleado emp = this.repositorio.buscar(Empleado.class, idEmpleado);
         return emp.getCosechas();
     }
@@ -46,12 +46,12 @@ public class ServicioEmpleado extends Servicio {
     // El ID funciona como parametro de busqueda, el resto de argumentos son los nuevos datos a modificar.
     // Por concenso, la lista de cosechas no se modificara desde la pantalla de Empleados sino desde la pantalla de cosechas, por lo que esta funcion sera
     // exclusivamente datos personales del empleado (que se modificaran con menos frecuencia que las cosechas)
-    public int editarEmpleado(Long idEmpleado, String nombres, String apellidos, int dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, long cuil) {
+    public int editarEmpleado(long idEmpleado, String nombres, String apellidos, int dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, long cuil) {
         if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || legajo.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();
-        Empleado empleado = this.repositorio.buscar(Empleado.class, idEmpleado);
+        Empleado empleado = buscarEmpleado(idEmpleado);
         if (empleado != null) {
             if (empleado.getApellidos() != apellidos) {
                 empleado.setApellidos(apellidos);
@@ -83,9 +83,9 @@ public class ServicioEmpleado extends Servicio {
         }
     }
 
-    public int eliminarEmpleado(Long idEmpleado) {
+    public int eliminarEmpleado(long idEmpleado) {
         this.repositorio.iniciarTransaccion();
-        Empleado empleado = this.repositorio.buscar(Empleado.class, idEmpleado);
+        Empleado empleado = buscarEmpleado(idEmpleado);
         // hacer todos los chequeos necesarios antes de eliminar
         if (empleado != null && empleado.getCosechas().isEmpty()) {
             this.repositorio.eliminar(empleado);
