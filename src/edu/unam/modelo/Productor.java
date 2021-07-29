@@ -2,7 +2,6 @@ package edu.unam.modelo;
 
 import java.util.*;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,43 +17,50 @@ public class Productor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idProductor;
 
-    private String cuit;
+    private long cuit;
     private String apellidos;
     private String nombres;
   
-    @OneToMany(mappedBy = "productor")
+    @OneToMany(targetEntity = Lote.class, mappedBy = "productor")
     private List<Lote> lotes = new ArrayList<>();
 
     public Productor() {
-        this.setCuit("[CUIT IND.]");
-        this.setApellidos("[APELLIDO IND.]");
-        this.setNombres("[NOMBRE IND.]");
-
+        this.setCuit(0);
+        this.setApellidos("");
+        this.setNombres("");
     }
 
     /* Todos los argumentos son requeridos para dar de alta un Productor */
+<<<<<<< HEAD
     public Productor(String cuit, String apellidos, String nombres) {
         this.setCuit(cuit);
         this.setApellidos(apellidos);
         this.setNombres(nombres);
+=======
+    public Productor(long cuit, String apellidos, String n) {
+        this.setCuit(cuit);
+        this.setApellidos(apellidos);
+        this.setNombres(n);
+>>>>>>> origin/main
     }
     
-    public String getCuit() {
-        return cuit;
+    public long getCuit() {
+        return this.cuit;
     }
 
     public String getApellidos() {
-        return apellidos;
+        return this.apellidos;
     }
 
     public String getNombres() {
-        return nombres;
+        return this.nombres;
     }
 
     public List<Lote> getLotes() {
-        return lotes;
+        return this.lotes;
     }
 
+<<<<<<< HEAD
     public void setCuit(String c) {
         this.cuit = c;
     }
@@ -69,4 +75,17 @@ public class Productor {
     public void setLotes(List<Lote> lt) {
         this.lotes = lt;
     }
+=======
+    public void setCuit(long cuit) {
+        this.cuit = cuit;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+>>>>>>> origin/main
 }
