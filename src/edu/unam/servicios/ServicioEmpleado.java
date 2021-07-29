@@ -5,7 +5,6 @@ import edu.unam.repositorio.Repositorio;
 import java.time.LocalDate;
 import java.util.List;
 
-import edu.unam.modelo.Cosecha;
 import edu.unam.modelo.Empleado;
 
 public class ServicioEmpleado extends Servicio {
