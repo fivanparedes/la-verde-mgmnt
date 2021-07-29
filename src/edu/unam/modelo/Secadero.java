@@ -12,7 +12,7 @@ public class Secadero {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idSecadero;
 
-    private long cuit;
+    private String cuit;
     private String razonSocial;
 
     @OneToMany(mappedBy = "secadero")
@@ -23,7 +23,7 @@ public class Secadero {
         this.razonSocial = "[RAZON SOCIAL IND.]";
     }
 
-    public Secadero(long cuit, String razonSocial, List<Cosecha> cosechas) {
+    public Secadero(String cuit, String razonSocial, List<Cosecha> cosechas) {
         this.cuit = cuit;
         this.razonSocial = razonSocial;
         this.cosechas = cosechas;
