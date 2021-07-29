@@ -24,12 +24,44 @@ public class ServicioSecadero {
     }
 
     public void agregarSecadero(Long cuit, String razonSocial, List<Cosecha> cosechas) {
-        if (cuit != null || razonSocial.trim().length() == 0) {
+        if (cuit == null || razonSocial.trim().length() == 0 || cosechas == null) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repo.iniciarTransaccion();
-        Productor productor = new Productor(cuit.toUpperCase().trim(), apellidos.toUpperCase().trim(), nombres.toUpperCase().trim());
-        this.repo.insertar(productor);
+        Secadero secadero = new Secadero(cuit, razonSocial.toUpperCase().trim(), cosechas);
+        this.repo.insertar(secadero);
         this.repo.confirmarTransaccion();
+    }
+
+    public void editarSecadero(int idSecadero, Long cuit, String razonSocial, List<Cosecha> cosechas) {
+        if (cuit == null || razonSocial.trim().length() == 0 || cosechas == null) {
+            throw new IllegalArgumentException("Faltan datos");
+        }
+        this.repo.iniciarTransaccion();
+        Secadero secadero = this.repo.buscar(Secadero.class, idSecadero);
+        if (secadero != null) {
+            secadero.setCuit(cuit);
+            secadero.setRazonSocial(razonSocial);
+            secadero.setCosechas(cosechas);
+    
+            this.repo.modificar(secadero);
+            this.repo.confirmarTransaccion();
+        } else {
+            this.repo.descartarTransaccion();
+        }
+    }
+
+    public int eliminarSecadero(int idSecadero) {
+        this.repo.iniciarTransaccion();
+        Secadero secadero = this.repo.buscar(Secadero.class, idSecadero);
+
+        if(secadero != null){
+            this.repo.eliminar(secadero);
+            this.repo.confirmarTransaccion();
+            return 0;
+        } else {
+            this.repo.descartarTransaccion();
+            return 1;
+        }
     }
 }
