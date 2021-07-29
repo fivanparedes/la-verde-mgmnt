@@ -15,7 +15,7 @@ public class Secadero {
     private long cuit;
     private String razonSocial;
 
-    @OneToMany(targetEntity = modelo.Cosecha.class, mappedBy = "secadero")
+    @OneToMany(targetEntity = Cosecha.class, mappedBy = "secadero")
     private List<Cosecha> cosechas = new ArrayList<>();
 
     public Secadero() {

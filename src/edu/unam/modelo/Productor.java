@@ -2,7 +2,6 @@ package edu.unam.modelo;
 
 import java.util.*;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +21,7 @@ public class Productor {
     private String apellidos;
     private String nombres;
   
-    @OneToMany(targetEntity = modelo.Lote.class, mappedBy = "productor")
+    @OneToMany(targetEntity = Lote.class, mappedBy = "productor")
     private List<Lote> lotes = new ArrayList<>();
 
     public Productor() {

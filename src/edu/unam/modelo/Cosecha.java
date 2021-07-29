@@ -21,13 +21,13 @@ public class Cosecha {
 
     private LocalDate fecha;
 
-    @ManyToMany(targetEntity = modelo.Cuadro.class)
+    @ManyToMany(targetEntity = Cuadro.class)
     private List<Cuadro> cuadros = new ArrayList<>();
 
-    @ManyToMany(targetEntity = modelo.Empleado.class)
+    @ManyToMany(targetEntity = Empleado.class)
     private List<Empleado> empleados;
 
-    @ManyToOne(targetEntity = modelo.Secadero.class)
+    @ManyToOne(targetEntity = Secadero.class)
     private Secadero secadero;
 
     public Cosecha() {

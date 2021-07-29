@@ -1,5 +1,6 @@
 package edu.unam.modelo;
 
+import java.util.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -51,8 +52,8 @@ public class Registro extends Cosecha {
         return this.pesoReg;
     }
 
-    public LocalDateTime getTiempoEnt() {
-        return this.tiempoEnt;
+    public LocalDateTime getTiempoReg() {
+        return this.tiempoReg;
     }
 
     public void setPesoReg(float pesoReg) {
