@@ -7,60 +7,57 @@ import java.util.List;
 import edu.unam.modelo.Cosecha;
 import edu.unam.modelo.Secadero;
 
-public class ServicioSecadero {
-
-    private Repositorio repo;
-
-    public ServicioSecadero(Repositorio r) {
-        this.repo = r;
+public class ServicioSecadero extends Servicio {
+    public ServicioSecadero(Repositorio repositorio) {
+        super(repositorio);
     }
 
     public List<Secadero> listarSecaderos() {
-        return this.repo.buscarTodos(Secadero.class);
+        return this.repositorio.buscarTodos(Secadero.class);
     }
 
     public Secadero buscarSecadero(int idSecadero) {
-        return this.repo.buscar(Secadero.class, idSecadero);
+        return this.repositorio.buscar(Secadero.class, idSecadero);
     }
 
-    public void agregarSecadero(Long cuit, String razonSocial, List<Cosecha> cosechas) {
-        if (cuit == null || razonSocial.trim().length() == 0 || cosechas == null) {
+    public void agregarSecadero(long cuit, String razonSocial, List<Cosecha> cosechas) {
+        if (razonSocial.trim().length() == 0 || cosechas == null) {
             throw new IllegalArgumentException("Faltan datos");
         }
-        this.repo.iniciarTransaccion();
+        this.repositorio.iniciarTransaccion();
         Secadero secadero = new Secadero(cuit, razonSocial.toUpperCase().trim(), cosechas);
-        this.repo.insertar(secadero);
-        this.repo.confirmarTransaccion();
+        this.repositorio.insertar(secadero);
+        this.repositorio.confirmarTransaccion();
     }
 
-    public void editarSecadero(int idSecadero, Long cuit, String razonSocial, List<Cosecha> cosechas) {
-        if (cuit == null || razonSocial.trim().length() == 0 || cosechas == null) {
+    public void editarSecadero(int idSecadero, long cuit, String razonSocial, List<Cosecha> cosechas) {
+        if (razonSocial.trim().length() == 0 || cosechas == null) {
             throw new IllegalArgumentException("Faltan datos");
         }
-        this.repo.iniciarTransaccion();
-        Secadero secadero = this.repo.buscar(Secadero.class, idSecadero);
+        this.repositorio.iniciarTransaccion();
+        Secadero secadero = buscarSecadero(idSecadero);
         if (secadero != null) {
             secadero.setCuit(cuit);
             secadero.setRazonSocial(razonSocial);
             secadero.setCosechas(cosechas);
-    
-            this.repo.modificar(secadero);
-            this.repo.confirmarTransaccion();
+            this.repositorio.modificar(secadero);
+            this.repositorio.confirmarTransaccion();
         } else {
-            this.repo.descartarTransaccion();
+            this.repositorio.descartarTransaccion();
         }
     }
 
     public int eliminarSecadero(int idSecadero) {
-        this.repo.iniciarTransaccion();
-        Secadero secadero = this.repo.buscar(Secadero.class, idSecadero);
-
-        if(secadero != null){
-            this.repo.eliminar(secadero);
-            this.repo.confirmarTransaccion();
+        this.repositorio.iniciarTransaccion();
+        Secadero secadero = buscarSecadero(idSecadero);
+        
+        //chequeos necesarios antes de eliminar
+        if(secadero != null && secadero.getCosechas().isEmpty()){
+            this.repositorio.eliminar(secadero);
+            this.repositorio.confirmarTransaccion();
             return 0;
         } else {
-            this.repo.descartarTransaccion();
+            this.repositorio.descartarTransaccion();
             return 1;
         }
     }
