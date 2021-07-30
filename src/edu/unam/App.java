@@ -1,9 +1,25 @@
 package edu.unam;
 
-public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+//import edu.unam.controladores.ControladorVistaMain;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-        //Haciendo pruebas
+public class App extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vistas/VistaMain.fxml"));     
+        Parent root = (Parent)fxmlLoader.load();
+        //ControladorVistaMain controlador = fxmlLoader.<ControladorVistaMain>getController();
+        Scene scene = new Scene(root);        
+        stage.setScene(scene);
+        stage.setTitle("Prueba Tareas");
+        stage.show();
     }
 }
