@@ -25,10 +25,11 @@ public class Lote {
         inicio();
     }
 
-    public Lote(double[] punto1, double[] punto2) {
+    public Lote(double[] punto1, double[] punto2, Productor productor) {
         inicio();
         this.setPunto1(punto1);
         this.setPunto2(punto2);
+        this.setProductor(productor);
     }
 
     public int getIdLote() {
@@ -57,6 +58,10 @@ public class Lote {
 
     public void setPunto2(double[] punto2) {
         this.punto2 = punto2;
+    }
+
+    public void setProductor(Productor productor) {
+        this.productor = productor;
     }
 
     private void inicio() {
