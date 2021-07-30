@@ -37,11 +37,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="contenedorEmp" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.controladores.ControladorVistaEmpleados">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label alignment="CENTER" layoutX="149.0" layoutY="14.0" style="&#10;" text="Gestionar empleados" textAlignment="CENTER" wrapText="false">
+        <Label fx:id="title" alignment="CENTER" layoutX="149.0" layoutY="14.0" style="&#10;" text="Gestionar empleados" textAlignment="CENTER" wrapText="false">
           <font>
             <Font size="18.0" />
           </font>

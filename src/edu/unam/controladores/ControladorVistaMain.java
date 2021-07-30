@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class ControladorVistaMain implements Initializable {
     @FXML
@@ -20,10 +21,14 @@ public class ControladorVistaMain implements Initializable {
 
     @FXML
     void mostrarEmpleados(ActionEvent event) throws IOException {
+        Stage stageEvento = (Stage)btnEmpleados.getScene().getWindow();
         cambiante.getChildren().clear();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("./vistas/VistaEmpleados.fxml"));     
-        Parent root = (Parent)fxmlLoader.load();
-        cambiante.getChildren().addAll(root);
+        FXMLLoader fxmlEmp = new FXMLLoader(getClass().getResource("../vistas/VistaEmpleados.fxml"));     
+        Parent root = (Parent)fxmlEmp.load();
+        ControladorVistaEmpleados controlador = fxmlEmp.<ControladorVistaEmpleados>getController();
+        //Scene escena = new Scene(root);
+        stageEvento.setTitle("La Verde S.A. Management - EMPLEADOS");
+        cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
     }
 
     @Override
