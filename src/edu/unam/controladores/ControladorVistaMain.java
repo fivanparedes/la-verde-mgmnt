@@ -21,7 +21,7 @@ public class ControladorVistaMain implements Initializable {
     @FXML
     void mostrarEmpleados(ActionEvent event) throws IOException {
         cambiante.getChildren().clear();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vistas/VistaEmpleados.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("./vistas/VistaEmpleados.fxml"));     
         Parent root = (Parent)fxmlLoader.load();
         cambiante.getChildren().addAll(root);
     }

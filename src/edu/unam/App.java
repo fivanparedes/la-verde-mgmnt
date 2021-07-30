@@ -14,7 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vistas/VistaMain.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("./vistas/VistaMain.fxml"));     
         Parent root = (Parent)fxmlLoader.load();
         //ControladorVistaMain controlador = fxmlLoader.<ControladorVistaMain>getController();
         Scene scene = new Scene(root);        
