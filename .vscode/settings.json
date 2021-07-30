@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.debug.settings.vmArgs": "--module-path /home/facurodrij/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
+
+}
