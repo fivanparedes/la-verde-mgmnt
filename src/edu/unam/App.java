@@ -19,7 +19,7 @@ public class App extends Application {
         //ControladorVistaMain controlador = fxmlLoader.<ControladorVistaMain>getController();
         Scene scene = new Scene(root);        
         stage.setScene(scene);
-        stage.setTitle("Prueba Tareas");
+        stage.setTitle("La Verde S.A. Management - BIENVENIDA");
         stage.show();
     }
 }

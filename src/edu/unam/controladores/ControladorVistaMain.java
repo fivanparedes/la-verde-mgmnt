@@ -24,7 +24,7 @@ public class ControladorVistaMain implements Initializable {
         Stage stageEvento = (Stage)btnEmpleados.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlEmp = new FXMLLoader(getClass().getResource("../vistas/VistaEmpleados.fxml"));     
-        Parent root = (Parent)fxmlEmp.load();
+        Parent root = (Parent)fxmlEmp.load();       //No tiene uso real pero la aplicacion no funciona si se elimina
         ControladorVistaEmpleados controlador = fxmlEmp.<ControladorVistaEmpleados>getController();
         //Scene escena = new Scene(root);
         stageEvento.setTitle("La Verde S.A. Management - EMPLEADOS");
