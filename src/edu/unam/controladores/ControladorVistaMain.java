@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.Parent;
+//import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -27,7 +27,8 @@ public class ControladorVistaMain implements Initializable {
         Stage stageEvento = (Stage)btnEmpleados.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaEmpleados.fxml"));     
-        Parent root = (Parent)fxmlView.load();       //No tiene uso real pero la aplicacion no funciona si se elimina
+        //Parent root = (Parent)fxmlView.load();        No tiene uso real pero la aplicacion no funciona si se elimina
+        fxmlView.load();     //Dejandolo asi funciona y deja de aparece la advertencia :)
         ControladorVistaEmpleados controlador = fxmlView.<ControladorVistaEmpleados>getController();
         //Scene escena = new Scene(root);
         stageEvento.setTitle("La Verde S.A. Management - EMPLEADOS");
@@ -39,7 +40,7 @@ public class ControladorVistaMain implements Initializable {
         Stage stageEvento = (Stage)btnProductores.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaProductores.fxml"));
-        Parent root = (Parent)fxmlView.load();
+        fxmlView.load();
         ControladorVistaProductores controlador = fxmlView.<ControladorVistaProductores>getController();
         //Scene escena = new Scene(root);
         stageEvento.setTitle("La Verde S.A. Management - PRODUCTORES");
@@ -51,7 +52,7 @@ public class ControladorVistaMain implements Initializable {
         Stage stageEvento = (Stage)btnSecaderos.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaSecaderos.fxml"));
-        Parent root = (Parent)fxmlView.load();
+        fxmlView.load();
         ControladorVistaSecaderos controlador = fxmlView.<ControladorVistaSecaderos>getController();
         //Scene escena = new Scene(root);
         stageEvento.setTitle("La Verde S.A. Management - SECADEROS");
@@ -63,7 +64,7 @@ public class ControladorVistaMain implements Initializable {
         Stage stageEvento = (Stage)btnCosechas.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCosechas.fxml"));
-        Parent root = (Parent)fxmlView.load();
+        fxmlView.load();
         ControladorVistaCosechas controlador = fxmlView.<ControladorVistaCosechas>getController();
         //Scene escena = new Scene(root);
         stageEvento.setTitle("La Verde S.A. Management - COSECHAS");
@@ -75,7 +76,7 @@ public class ControladorVistaMain implements Initializable {
         Stage stageEvento = (Stage)btnLotes.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaLotes.fxml"));
-        Parent root = (Parent)fxmlView.load();
+        fxmlView.load();
         ControladorVistaLotes controlador = fxmlView.<ControladorVistaLotes>getController();
         //Scene escena = new Scene(root);
         stageEvento.setTitle("La Verde S.A. Management - LOTES");
@@ -87,7 +88,7 @@ public class ControladorVistaMain implements Initializable {
         Stage stageEvento = (Stage)btnCuadros.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCuadros.fxml"));
-        Parent root = (Parent)fxmlView.load();
+        fxmlView.load();
         ControladorVistaCuadros controlador = fxmlView.<ControladorVistaCuadros>getController();
         //Scene escena = new Scene(root);
         stageEvento.setTitle("La Verde S.A. Management - CUADROS");
