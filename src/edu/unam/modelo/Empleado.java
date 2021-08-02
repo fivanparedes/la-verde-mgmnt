@@ -10,31 +10,31 @@ import jakarta.persistence.ManyToMany;
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idEmpleado;
+    private Long idEmpleado;
 
     @ManyToMany(targetEntity = Cosecha.class, mappedBy = "empleados")
     private List<Cosecha> cosechas = new ArrayList<>();
 
     private String legajo;
-    private int dni;
+    private Long dni;
     private String apellidos;
     private String nombres;
     private LocalDate ingreso;
     private LocalDate nacimiento;
-    private long cuil;
+    private Long cuil;
 
     public Empleado() {
         this.setLegajo("");
-        this.setDni(0);
+        this.setDni((long) 0);
         this.setApellidos("");
         this.setNombres("");
         this.setIngreso(LocalDate.now());
         this.setNacimiento(LocalDate.now());
-        this.setCuil(0);
+        this.setCuil((long) 0);
     }
 
-    public Empleado(String legajo, int dni, String apellidos, String nombres, LocalDate ingreso, LocalDate nacimiento,
-            long cuil) {
+    public Empleado(String legajo, Long dni, String apellidos, String nombres, LocalDate ingreso, LocalDate nacimiento,
+            Long cuil) {
         this.setLegajo(legajo);
         this.setDni(dni);
         this.setApellidos(apellidos);
@@ -44,7 +44,7 @@ public class Empleado {
         this.setCuil(cuil);
     }
 
-    public long getIdEmpleado() {
+    public Long getIdEmpleado() {
         return this.idEmpleado;
     }
 
@@ -56,7 +56,7 @@ public class Empleado {
         return this.legajo;
     }
 
-    public int getDni() {
+    public Long getDni() {
         return this.dni;
     }
 
@@ -76,7 +76,7 @@ public class Empleado {
         return this.nacimiento;
     }
 
-    public long getCuil() {
+    public Long getCuil() {
         return this.cuil;
     }
 
@@ -84,8 +84,8 @@ public class Empleado {
         this.legajo = legajo;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setDni(Long i) {
+        this.dni = i;
     }
 
     public void setApellidos(String apellidos) {
@@ -104,7 +104,7 @@ public class Empleado {
         this.nacimiento = nacimiento;
     }
 
-    public void setCuil(long cuil) {
-        this.cuil = cuil;
+    public void setCuil(Long i) {
+        this.cuil = i;
     }
 }
