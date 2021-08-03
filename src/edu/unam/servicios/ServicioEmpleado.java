@@ -20,7 +20,7 @@ public class ServicioEmpleado extends Servicio {
     }
   
     //Hacer validaciones extra de ser necesario
-    public void agregarEmpleado(String nombres, String apellidos, int dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, long cuil) {
+    public void agregarEmpleado(String nombres, String apellidos, Long dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, Long cuil) {
         if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || legajo.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
@@ -37,7 +37,7 @@ public class ServicioEmpleado extends Servicio {
     // El ID funciona como parametro de busqueda, el resto de argumentos son los nuevos datos a modificar.
     // Por concenso, la lista de cosechas no se modificara desde la pantalla de Empleados sino desde la pantalla de cosechas, por lo que esta funcion sera
     // exclusivamente datos personales del empleado (que se modificaran con menos frecuencia que las cosechas)
-    public int editarEmpleado(long idEmpleado, String nombres, String apellidos, int dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, long cuil) {
+    public int editarEmpleado(long idEmpleado, String nombres, String apellidos, Long dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, Long cuil) {
         if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || legajo.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
