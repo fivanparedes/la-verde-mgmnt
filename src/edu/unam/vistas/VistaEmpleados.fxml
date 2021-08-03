@@ -33,9 +33,11 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -49,27 +51,47 @@
             <Font name="DejaVu Sans ExtraLight" size="30.0" />
           </font>
         </Label>
-            <TableView fx:id="tabla" editable="true" layoutY="137.0" prefHeight="562.0" prefWidth="1012.0">
+            <TableView fx:id="tabla" editable="true" layoutY="260.0" prefHeight="439.0" prefWidth="1012.0">
               <columns>
-                  <TableColumn fx:id="columnaId" editable="false" onEditStart="#showEditWarning" prefWidth="36.0" text="ID" />
-                  <TableColumn fx:id="columnaLegajo" prefWidth="84.0" text="Legajo" />
-                <TableColumn fx:id="columnaApellidos" onEditStart="#showEditWarning" prefWidth="205.0" text="Apellidos" />
-                <TableColumn fx:id="columnaNombres" onEditStart="#showEditWarning" prefWidth="170.0" text="Nombres" />
-                  <TableColumn fx:id="columnaDni" onEditStart="#showEditWarning" prefWidth="95.0" text="DNI" />
-                  <TableColumn fx:id="columnaNacimiento" onEditStart="#showEditWarning" prefWidth="130.0" text="Nacimiento" />
-                  <TableColumn fx:id="columnaCuil" onEditStart="#showEditWarning" prefWidth="125.0" text="CUIL" />
-                  <TableColumn fx:id="columnaIngreso" onEditStart="#showEditWarning" prefWidth="151.0" text="Fecha de Ingreso" />
+                  <TableColumn fx:id="columnaId" editable="false" prefWidth="36.0" text="ID" />
+                  <TableColumn fx:id="columnaLegajo" editable="false" prefWidth="84.0" text="Legajo" />
+                <TableColumn fx:id="columnaApellidos" editable="false" prefWidth="205.0" text="Apellidos" />
+                <TableColumn fx:id="columnaNombres" editable="false" prefWidth="170.0" text="Nombres" />
+                  <TableColumn fx:id="columnaDni" editable="false" prefWidth="95.0" text="DNI" />
+                  <TableColumn fx:id="columnaNacimiento" editable="false" prefWidth="130.0" text="Nacimiento" />
+                  <TableColumn fx:id="columnaCuil" editable="false" prefWidth="125.0" text="CUIL" />
+                  <TableColumn fx:id="columnaIngreso" editable="false" prefWidth="151.0" text="Fecha de Ingreso" />
               </columns>
             </TableView>
-            <Label fx:id="editWarningLabel" layoutX="48.0" layoutY="114.0" prefHeight="21.0" prefWidth="489.0" text="Recuerde aplicar los cambios antes de salir." textAlignment="CENTER">
+            <Label fx:id="editWarningLabel" layoutX="323.0" layoutY="233.0" prefHeight="21.0" prefWidth="489.0" textAlignment="CENTER">
                <font>
-                  <Font name="DejaVu Sans Mono Bold" size="17.0" />
+                  <Font name="DejaVu Sans Mono Bold" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="1023.0" layoutY="218.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="76.0" text="+" />
-            <Button layoutX="1023.0" layoutY="252.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="76.0" text="-" />
-            <Button layoutX="1023.0" layoutY="287.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="76.0" text="Aplicar" />
-            <Button layoutX="1023.0" layoutY="326.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="76.0" text="Cancelar" />
+            <Button fx:id="btnAdd" layoutX="1023.0" layoutY="326.0" mnemonicParsing="false" onAction="#clicNuevo" prefHeight="24.0" prefWidth="76.0" text="+" />
+            <Button fx:id="btnEliminar" layoutX="1023.0" layoutY="364.0" mnemonicParsing="false" onAction="#clicEliminar" prefHeight="24.0" prefWidth="76.0" text="-" />
+            <Button fx:id="btnCambiar" layoutX="1023.0" layoutY="404.0" mnemonicParsing="false" onAction="#cambiarDatos" prefHeight="24.0" prefWidth="76.0" text="Cambiar" />
+            <TextField fx:id="fieldApellidos" layoutX="127.0" layoutY="95.0" onKeyTyped="#showEditWarning" />
+            <TextField fx:id="fieldNombres" layoutX="127.0" layoutY="134.0" onKeyTyped="#showEditWarning" />
+            <Label layoutX="60.0" layoutY="138.0" text="Nombres" />
+            <Label layoutX="60.0" layoutY="99.0" text="Apellidos" />
+            <Label layoutX="75.0" layoutY="223.0" prefHeight="16.0" prefWidth="30.0" text="DNI" />
+            <Label layoutX="385.0" layoutY="99.0" text="CUIL" />
+            <Label layoutX="353.0" layoutY="138.0" text="Legajo N°" />
+            <DatePicker fx:id="fieldNacimiento" layoutX="127.0" layoutY="175.0" onAction="#showEditWarning" prefHeight="24.0" prefWidth="171.0" />
+            <TextField fx:id="fieldDni" layoutX="127.0" layoutY="219.0" onKeyTyped="#showEditWarning" />
+            <Label layoutX="43.0" layoutY="179.0" prefHeight="16.0" prefWidth="76.0" text="Nacimiento" />
+            <TextField fx:id="fieldCuil" layoutX="424.0" layoutY="95.0" onKeyTyped="#showEditWarning" />
+            <TextField fx:id="fieldLegajo" layoutX="424.0" layoutY="134.0" onKeyTyped="#showEditWarning" />
+            <Label layoutX="385.0" layoutY="179.0" prefWidth="212.0" text="Fecha de ingreso a la empresa" />
+            <DatePicker fx:id="fieldIngreso" layoutX="424.0" layoutY="207.0" onAction="#showEditWarning" prefHeight="24.0" prefWidth="171.0" />
+            <Button fx:id="btnHelp" layoutX="741.0" layoutY="20.0" mnemonicParsing="false" onAction="#mostrarAyuda" text="?" />
+            <TableView layoutX="722.0" layoutY="94.0" prefHeight="147.0" prefWidth="381.0">
+              <columns>
+                <TableColumn prefWidth="131.0" resizable="false" text="Cosecha" />
+                  <TableColumn prefWidth="169.0" resizable="false" text="Fecha" />
+              </columns>
+            </TableView>
       </children>
     </AnchorPane>
   </children>
