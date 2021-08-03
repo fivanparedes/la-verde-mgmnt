@@ -144,6 +144,7 @@ public class ControladorVistaEmpleados implements Initializable {
     private void cargarDatos() {
         empleadoSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (empleadoSeleccionado != null) {
+            cosechas.getItems().clear();
             //etiquetaIdEmpleado.setText(String.valueOf(empleadoSeleccionado.getIdEmpleado()));
             fieldNombres.setText(empleadoSeleccionado.getNombres());
             fieldApellidos.setText(empleadoSeleccionado.getApellidos());
