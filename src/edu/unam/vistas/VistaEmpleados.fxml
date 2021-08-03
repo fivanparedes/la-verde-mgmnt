@@ -88,8 +88,8 @@
             <Button fx:id="btnHelp" layoutX="741.0" layoutY="20.0" mnemonicParsing="false" onAction="#mostrarAyuda" text="?" />
             <TableView layoutX="722.0" layoutY="94.0" prefHeight="147.0" prefWidth="381.0">
               <columns>
-                <TableColumn prefWidth="131.0" resizable="false" text="Cosecha" />
-                  <TableColumn prefWidth="169.0" resizable="false" text="Fecha" />
+                <TableColumn fx:id="columnaIdCosecha" prefWidth="131.0" resizable="false" text="Cosecha" />
+                  <TableColumn fx:id="columnaFechaCosecha" prefWidth="169.0" resizable="false" text="Fecha" />
               </columns>
             </TableView>
       </children>

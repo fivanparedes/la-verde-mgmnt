@@ -97,7 +97,7 @@ public class ControladorVistaEmpleados implements Initializable {
         columnaNacimiento.setCellValueFactory(new PropertyValueFactory<>("nacimiento"));
         columnaCuil.setCellValueFactory(new PropertyValueFactory<>("cuil"));
         columnaIngreso.setCellValueFactory(new PropertyValueFactory<>("ingreso"));
-        tabla.getItems().addAll(this.servicio.listarEmpleados());
+        //tabla.getItems().addAll(this.servicio.listarEmpleados());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCosecha.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
         columnaFechaCosecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
