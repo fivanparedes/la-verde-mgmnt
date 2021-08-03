@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="contenedor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.controladores.ControladorVistaSecaderos">
+   <children>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="550.0" prefWidth="675.0" style="-fx-background-color: blue;" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="label" alignment="CENTER" style="-fx-background-color: green;" text="Gestionar secaderos">
+               <font>
+                  <Font size="39.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

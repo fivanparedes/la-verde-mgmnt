@@ -1,11 +1,16 @@
 package edu.unam;
-
-//import edu.unam.controladores.ControladorVistaMain;
+//import javafx.scene.control.Label;
+//import javafx.scene.text.Font;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+//import edu.unam.controladores.ControladorVistaMain;
+//import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+//import javafx.scene.Scene;
+//import javafx.stage.Stage;
 
 public class App extends Application {
     public static void main(String[] args) {
@@ -20,6 +25,7 @@ public class App extends Application {
         Scene scene = new Scene(root);        
         stage.setScene(scene);
         stage.setTitle("La Verde S.A. Management - BIENVENIDA");
+        //stage.setResizable(false);
         stage.show();
     }
 }

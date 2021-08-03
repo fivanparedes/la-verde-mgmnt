@@ -81,7 +81,7 @@ public class ControladorVistaEmpleados implements Initializable {
     //En este caso, este VBox es el contenedor que engloba todos los elementos de mi vista de Empleados. Gracias al metodo getChildren() puedo obtener
     //todos los elementos hijos (o contenidos dentro) de este VBox y utilizarlos en otros lugares. Para ello me voy a valer de un getter.
     @FXML
-    private VBox contenedorEmp;
+    private VBox contenedor;
 
     //La interfaz Initializable te exige redefinir el metodo initialize(), hasta ahora no le di alguna funcionalidad significativa.
     @Override
@@ -180,6 +180,6 @@ public class ControladorVistaEmpleados implements Initializable {
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());  //Obtengo los hijos del contenedor, y agrego los hijos del VBox de este controlador
     */
     public VBox getContenedor() {
-        return this.contenedorEmp;
+        return this.contenedor;
     }
 }
