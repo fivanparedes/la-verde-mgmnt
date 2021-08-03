@@ -160,9 +160,13 @@ public class ControladorVistaEmpleados implements Initializable {
     }
     private void limpiar() {
         // limpiamos
+        cosechas.getItems().clear();
         editWarningLabel.setText("Actualizando...");
         fieldNombres.clear();
         fieldApellidos.clear();
+        fieldCuil.clear();
+        fieldDni.clear();
+        fieldLegajo.clear();
         cosechas.getItems().clear();
         tabla.getItems().clear();
         tabla.getItems().addAll(this.servicio.listarEmpleados());
