@@ -18,7 +18,7 @@ public class ControladorVistaSecaderos implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
+        System.out.println("Succesfully initialized");
         
     }
 

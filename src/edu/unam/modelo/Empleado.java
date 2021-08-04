@@ -13,7 +13,7 @@ public class Empleado {
     private Long idEmpleado;
 
     @ManyToMany(targetEntity = Cosecha.class, mappedBy = "empleados")
-    private List<Cosecha> cosechas = new ArrayList<>();
+    private List<Cosecha> cosechas;
 
     private String legajo;
     private Long dni;
@@ -49,6 +49,9 @@ public class Empleado {
     }
 
     public List<Cosecha> getCosechas() {
+        if (this.cosechas == null) {
+            this.cosechas = new ArrayList<>();
+        }
         return this.cosechas;
     }
 

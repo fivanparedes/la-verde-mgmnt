@@ -26,7 +26,7 @@ import javafx.scene.layout.VBox;
 */
 public class ControladorVistaEmpleados implements Initializable {
     private Empleado empleadoSeleccionado;
-    private ServicioEmpleado servicio;
+    private static ServicioEmpleado servicio;
     //Por medio de @FXML se referencian los elementos con los que se van a interactuar en su vista. Aqui hay ejemplos.
     @FXML
     private Label title;
@@ -83,6 +83,10 @@ public class ControladorVistaEmpleados implements Initializable {
     @FXML
     private VBox contenedor;
 
+    public static void enlazarServicio(ServicioEmpleado s) {
+        servicio = s;
+    }
+
     //La interfaz Initializable te exige redefinir el metodo initialize(), hasta ahora no le di alguna funcionalidad significativa.
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -97,6 +101,7 @@ public class ControladorVistaEmpleados implements Initializable {
         columnaNacimiento.setCellValueFactory(new PropertyValueFactory<>("nacimiento"));
         columnaCuil.setCellValueFactory(new PropertyValueFactory<>("cuil"));
         columnaIngreso.setCellValueFactory(new PropertyValueFactory<>("ingreso"));
+        //TODO: hacer andar el servicio.
         //tabla.getItems().addAll(this.servicio.listarEmpleados());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCosecha.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
@@ -112,10 +117,9 @@ public class ControladorVistaEmpleados implements Initializable {
     private void clicNuevo() {
         tabla.getSelectionModel().clearSelection();
         try {
-            this.servicio.agregarEmpleado(fieldNombres.getText().trim(), fieldApellidos.getText().trim(), Long.getLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.getLong(fieldCuil.getText()));
+            servicio.agregarEmpleado(fieldNombres.getText().trim(), fieldApellidos.getText().trim(), Long.getLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.getLong(fieldCuil.getText()));
             limpiar();
         } catch (Exception e) {
-            //TODO: handle exception
             mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", e.getMessage());
         }
     }
@@ -131,7 +135,10 @@ public class ControladorVistaEmpleados implements Initializable {
     @FXML
     private void cambiarDatos() {
         empleadoSeleccionado = tabla.getSelectionModel().getSelectedItem();
-        servicio.editarEmpleado(empleadoSeleccionado.getIdEmpleado(), fieldNombres.getText(), fieldApellidos.getText(), Long.getLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.getLong(fieldCuil.getText()));
+        if (empleadoSeleccionado != null) {
+            servicio.editarEmpleado(empleadoSeleccionado.getIdEmpleado(), fieldNombres.getText(), fieldApellidos.getText(), Long.getLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.getLong(fieldCuil.getText()));
+            limpiar();
+        }    
     }
 
     @FXML
@@ -148,6 +155,11 @@ public class ControladorVistaEmpleados implements Initializable {
             //etiquetaIdEmpleado.setText(String.valueOf(empleadoSeleccionado.getIdEmpleado()));
             fieldNombres.setText(empleadoSeleccionado.getNombres());
             fieldApellidos.setText(empleadoSeleccionado.getApellidos());
+            fieldDni.setText(Long.toString(empleadoSeleccionado.getDni()));
+            fieldLegajo.setText(empleadoSeleccionado.getLegajo());
+            fieldCuil.setText(Long.toString(empleadoSeleccionado.getCuil()));
+            fieldNacimiento.setValue(empleadoSeleccionado.getNacimiento());
+            fieldIngreso.setValue(empleadoSeleccionado.getIngreso());
             cosechas.getItems().addAll(empleadoSeleccionado.getCosechas());
         }
     }
@@ -169,7 +181,7 @@ public class ControladorVistaEmpleados implements Initializable {
         fieldLegajo.clear();
         cosechas.getItems().clear();
         tabla.getItems().clear();
-        tabla.getItems().addAll(this.servicio.listarEmpleados());
+        tabla.getItems().addAll(servicio.listarEmpleados());
         editWarningLabel.setText(" ");
     }
     /*  Este getter me permite utilizar esta vista en otros lugares fuera de este controlador.

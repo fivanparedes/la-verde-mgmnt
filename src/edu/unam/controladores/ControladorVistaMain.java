@@ -2,7 +2,11 @@ package edu.unam.controladores;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+
 
 //import javax.swing.Action;
 
@@ -19,6 +23,8 @@ public class ControladorVistaMain implements Initializable {
     @FXML
     private Button btnEmpleados, btnProductores, btnSecaderos, btnCosechas, btnLotes, btnCuadros;
 
+    private List<Button> listaBotones = new ArrayList<>();
+
     @FXML 
     private Group cambiante;
 
@@ -30,9 +36,8 @@ public class ControladorVistaMain implements Initializable {
         fxmlEmp.load();      
         ControladorVistaEmpleados controlador = fxmlEmp.<ControladorVistaEmpleados>getController();
         stageEvento.setTitle("La Verde S.A. Management - EMPLEADOS");
-        btnEmpleados.setDisable(true);
+        intercambiarBotones(btnEmpleados);
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
-        controlador.getContenedor().setLayoutY(-200);
     }
 
     @FXML
@@ -42,7 +47,7 @@ public class ControladorVistaMain implements Initializable {
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaProductores.fxml"));
         fxmlView.load();
         ControladorVistaProductores controlador = fxmlView.<ControladorVistaProductores>getController();
-        //Scene escena = new Scene(root);
+        intercambiarBotones(btnProductores);
         stageEvento.setTitle("La Verde S.A. Management - PRODUCTORES");
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
     }
@@ -54,7 +59,7 @@ public class ControladorVistaMain implements Initializable {
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaSecaderos.fxml"));
         fxmlView.load();
         ControladorVistaSecaderos controlador = fxmlView.<ControladorVistaSecaderos>getController();
-        //Scene escena = new Scene(root);
+        intercambiarBotones(btnSecaderos);
         stageEvento.setTitle("La Verde S.A. Management - SECADEROS");
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
     }
@@ -66,7 +71,7 @@ public class ControladorVistaMain implements Initializable {
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCosechas.fxml"));
         fxmlView.load();
         ControladorVistaCosechas controlador = fxmlView.<ControladorVistaCosechas>getController();
-        //Scene escena = new Scene(root);
+        intercambiarBotones(btnCosechas);
         stageEvento.setTitle("La Verde S.A. Management - COSECHAS");
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
     }
@@ -78,7 +83,7 @@ public class ControladorVistaMain implements Initializable {
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaLotes.fxml"));
         fxmlView.load();
         ControladorVistaLotes controlador = fxmlView.<ControladorVistaLotes>getController();
-        //Scene escena = new Scene(root);
+        intercambiarBotones(btnLotes);
         stageEvento.setTitle("La Verde S.A. Management - LOTES");
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
     }
@@ -90,15 +95,29 @@ public class ControladorVistaMain implements Initializable {
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCuadros.fxml"));
         fxmlView.load();
         ControladorVistaCuadros controlador = fxmlView.<ControladorVistaCuadros>getController();
-        //Scene escena = new Scene(root);
+        intercambiarBotones(btnCuadros);
         stageEvento.setTitle("La Verde S.A. Management - CUADROS");
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
     }
 
-
+    private void intercambiarBotones(Button btn) {
+        for (Button button : listaBotones) {
+            if (button == btn) {
+                button.setDisable(true);
+            } else {
+                button.setDisable(false);
+            }
+        }
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println("Successfully initialized");       
+        System.out.println("Successfully initialized"); 
+        listaBotones.add(btnCosechas);
+        listaBotones.add(btnCuadros);
+        listaBotones.add(btnEmpleados);
+        listaBotones.add(btnLotes);
+        listaBotones.add(btnProductores);
+        listaBotones.add(btnSecaderos);
     }
 }
