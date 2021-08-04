@@ -30,7 +30,7 @@ public class ControladorVistaMain implements Initializable {
         fxmlEmp.load();      
         ControladorVistaEmpleados controlador = fxmlEmp.<ControladorVistaEmpleados>getController();
         stageEvento.setTitle("La Verde S.A. Management - EMPLEADOS");
-        btnEmpleados.setDisable(true);
+        //btnEmpleados.setDisable(true);
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
         controlador.getContenedor().setLayoutY(-200);
     }
