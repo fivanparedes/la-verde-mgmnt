@@ -25,7 +25,9 @@ public class App extends Application {
         Scene scene = new Scene(root);        
         stage.setScene(scene);
         stage.setTitle("La Verde S.A. Management - BIENVENIDA");
-        //stage.setResizable(false);
+        //stage.setFullScreen(true);
+        stage.setMaximized(true);
+        stage.setResizable(false);
         stage.show();
     }
 }
