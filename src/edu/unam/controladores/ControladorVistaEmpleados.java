@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 import edu.unam.modelo.Cosecha;
 import edu.unam.modelo.Empleado;
 import edu.unam.servicios.ServicioEmpleado;
+import edu.unam.vistas.VistaUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -120,7 +120,7 @@ public class ControladorVistaEmpleados implements Initializable {
             servicio.agregarEmpleado(fieldNombres.getText().trim(), fieldApellidos.getText().trim(), Long.getLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.getLong(fieldCuil.getText()));
             limpiar();
         } catch (Exception e) {
-            mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", e.getMessage());
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", e.getMessage());
         }
     }
     @FXML
@@ -143,7 +143,7 @@ public class ControladorVistaEmpleados implements Initializable {
 
     @FXML
     private void mostrarAyuda() {
-        mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n ");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n ");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */
@@ -162,13 +162,6 @@ public class ControladorVistaEmpleados implements Initializable {
             fieldIngreso.setValue(empleadoSeleccionado.getIngreso());
             cosechas.getItems().addAll(empleadoSeleccionado.getCosechas());
         }
-    }
-    private void mostrarAlerta(AlertType at, String t, String h, String c) {
-        Alert a = new Alert(at);
-        a.setTitle(t);
-        a.setHeaderText(h);
-        a.setContentText(c);
-        a.show();
     }
     private void limpiar() {
         // limpiamos

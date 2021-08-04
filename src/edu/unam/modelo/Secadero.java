@@ -16,11 +16,18 @@ public class Secadero {
     private String razonSocial;
 
     @OneToMany(targetEntity = Cosecha.class, mappedBy = "secadero")
-    private List<Cosecha> cosechas = new ArrayList<>();
+    private List<Cosecha> cosechas;
 
     public Secadero() {
         this.setCuit(0);
         this.setRazonSocial("");;
+        this.cosechas = new ArrayList<>();
+    }
+
+    public Secadero (long cuit, String razonSocial) {
+        this.setCuit(cuit);
+        this.setRazonSocial(razonSocial);
+        this.cosechas = new ArrayList<>();
     }
 
     public Secadero(long cuit, String razonSocial, List<Cosecha> cosechas) {

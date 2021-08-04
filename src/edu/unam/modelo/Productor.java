@@ -37,6 +37,18 @@ public class Productor {
         this.setNombres(nombres);
     }
     
+    public int getIdProductor() {
+        return idProductor;
+    }
+
+    public void setIdProductor(int idProductor) {
+        this.idProductor = idProductor;
+    }
+
+    public void setLotes(List<Lote> lotes) {
+        this.lotes = lotes;
+    }
+
     public Long getCuit() {
         return this.cuit;
     }

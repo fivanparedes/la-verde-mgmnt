@@ -14,6 +14,7 @@ public class Lote {
 
     private double[] punto1;
     private double[] punto2;
+    private String puntos;
 
     @ManyToOne
     private Productor productor;
@@ -67,5 +68,10 @@ public class Lote {
     private void inicio() {
         this.punto1 = new double[2];
         this.punto2 = new double[2];
+    }
+    @Override
+    public String toString() {
+        this.puntos = "(" + Double.toString(this.punto1[0]) + "," + Double.toString(this.punto1[1]) + ") ; (" + Double.toString(this.punto2[0]) + "," + Double.toString(this.punto2[1]) + ")";
+        return this.puntos;
     }
 }

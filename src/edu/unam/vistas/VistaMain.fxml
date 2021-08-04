@@ -96,13 +96,22 @@
                   <Button fx:id="btnSecaderos" layoutX="13.0" layoutY="161.0" mnemonicParsing="false" onAction="#mostrarSecaderos" prefHeight="34.0" prefWidth="194.0" text="Secaderos" />
                   <Button fx:id="btnLotes" layoutX="14.0" layoutY="204.0" mnemonicParsing="false" onAction="#mostrarLotes" prefHeight="34.0" prefWidth="89.0" text="Lotes" />
                   <Button fx:id="btnCuadros" layoutX="119.0" layoutY="204.0" mnemonicParsing="false" onAction="#mostrarCuadros" prefHeight="34.0" prefWidth="89.0" text="Cuadros" />
+                  <Button fx:id="btnManual" layoutX="13.0" layoutY="299.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="194.0" text="Manual de usuario" />
           </children>
         </AnchorPane>
             <Group fx:id="cambiante">
                <children>
             <AnchorPane id="Content" fx:id="panelPrincipal" layoutX="-42.0" layoutY="-5.0" minHeight="-1.0" minWidth="-1.0" prefHeight="550.0" prefWidth="675.0">
               <children>
-                <Label alignment="TOP_CENTER" contentDisplay="TOP" font="$x1" style="&#10;" text="BIENVENID@ A LA VERDE S.A. MANAGEMENT " textAlignment="CENTER" textFill="#222222" wrapText="false" />
+                <Label alignment="TOP_CENTER" contentDisplay="TOP" font="$x1" prefWidth="413.0" style="&#10;" text="LA VERDE S.A. MANAGEMENT " textFill="#222222" wrapText="true" />
+                        <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="40.0" minWidth="-Infinity" prefHeight="8.0" prefWidth="1000.0" text="Para comenzar a trabajar, guiese por el menu a la izquierda." wrapText="true" />
+                        <Label layoutX="14.0" layoutY="70.0" minWidth="-Infinity" prefHeight="18.0" prefWidth="1000.0" text="COSECHAS: Le permitira gestionar las cosechas que se van realizando o entregando." />
+                        <Label layoutX="14.0" layoutY="98.0" minWidth="-Infinity" prefHeight="18.0" prefWidth="1000.0" text="EMPLEADOS: Se podran dar de alta o baja los empleados que trabajan en el campo." />
+                        <Label layoutX="14.0" layoutY="128.0" minWidth="-Infinity" prefHeight="18.0" prefWidth="1000.0" text="PRODUCTORES: maneja los productores propietarios de lotes en el campo." />
+                        <Label layoutX="14.0" layoutY="159.0" minWidth="-Infinity" prefHeight="18.0" prefWidth="1000.0" text="SECADEROS: dar de alta o baja los secaderos que reciben las entregas del campo." />
+                        <Label layoutX="14.0" layoutY="189.0" minWidth="-Infinity" prefHeight="18.0" prefWidth="1000.0" text="LOTES: terrenos en donde se planta Yerba." />
+                        <Label layoutX="14.0" layoutY="218.0" minWidth="-Infinity" prefHeight="18.0" prefWidth="1000.0" text="CUADROS: subdivisiones de los lotes en donde se puede plantar." />
+                        <Label layoutX="14.0" layoutY="246.0" minWidth="-Infinity" prefHeight="18.0" prefWidth="1000.0" text="MANUAL DE USUARIO: pantalla de ayuda mas extensa." />
               </children>
             </AnchorPane>
                </children>

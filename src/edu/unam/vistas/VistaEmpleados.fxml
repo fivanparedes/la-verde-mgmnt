@@ -42,16 +42,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="contenedor" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.controladores.ControladorVistaEmpleados">
+<VBox fx:id="contenedor" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.controladores.ControladorVistaEmpleados">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="536.0" prefWidth="1150.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1150.0" VBox.vgrow="ALWAYS">
       <children>
         <Label fx:id="title" alignment="CENTER" layoutX="415.0" layoutY="14.0" style="&#10;" text="Gestionar empleados" textAlignment="CENTER" wrapText="false">
           <font>
             <Font name="DejaVu Sans ExtraLight" size="30.0" />
           </font>
         </Label>
-            <TableView fx:id="tabla" editable="true" layoutY="260.0" prefHeight="289.0" prefWidth="1012.0">
+            <TableView fx:id="tabla" editable="true" layoutY="260.0" prefHeight="432.0" prefWidth="1012.0">
               <columns>
                   <TableColumn fx:id="columnaId" editable="false" prefWidth="36.0" text="ID" />
                   <TableColumn fx:id="columnaLegajo" editable="false" prefWidth="84.0" text="Legajo" />

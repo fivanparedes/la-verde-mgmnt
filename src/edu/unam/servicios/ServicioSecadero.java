@@ -20,12 +20,14 @@ public class ServicioSecadero extends Servicio {
         return this.repositorio.buscar(Secadero.class, idSecadero);
     }
 
-    public void agregarSecadero(long cuit, String razonSocial, List<Cosecha> cosechas) {
-        if (razonSocial.trim().length() == 0 || cosechas == null) {
+    //Removi el tercer argumento (lista de cosechas) ya que dicha lista se agregara en el servicio de cosechas.
+    //Para hacer andar este servicio, agregue un tercer constructor en el modelo que acepte dos parametros.
+    public void agregarSecadero(long cuit, String razonSocial) {
+        if (razonSocial.trim().length() == 0 || cuit <= 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();
-        Secadero secadero = new Secadero(cuit, razonSocial.toUpperCase().trim(), cosechas);
+        Secadero secadero = new Secadero(cuit, razonSocial.toUpperCase().trim());
         this.repositorio.insertar(secadero);
         this.repositorio.confirmarTransaccion();
     }

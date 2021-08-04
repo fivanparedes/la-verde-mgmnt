@@ -22,10 +22,10 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("./vistas/VistaMain.fxml"));     
         Parent root = (Parent)fxmlLoader.load();
         //ControladorVistaMain controlador = fxmlLoader.<ControladorVistaMain>getController();
-        Scene scene = new Scene(root);        
+        Scene scene = new Scene(root, 1360, 700);        
         stage.setScene(scene);
         stage.setTitle("La Verde S.A. Management - BIENVENIDA");
-        stage.setMaximized(true);
+        //stage.setMaximized(true);
         stage.setResizable(false);
         stage.show();
     }
