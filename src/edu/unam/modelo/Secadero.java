@@ -65,4 +65,9 @@ public class Secadero {
     public void setCosechas(List<Cosecha> cosechas) {
         this.cosechas = cosechas;
     }
+
+    @Override
+    public final String toString() {
+        return Integer.toString(this.getIdSecadero()) + ". " + Long.toString(this.getCuit()) + ", " + this.getRazonSocial();
+    }
 }

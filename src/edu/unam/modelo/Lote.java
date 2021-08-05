@@ -52,6 +52,10 @@ public class Lote {
         return productor;
     }
 
+    public String getPuntos() {
+        this.puntos = this.toString();
+        return this.puntos;
+    }
     public List<Cuadro> getCuadros() {
         return cuadros;
     }
@@ -64,6 +68,10 @@ public class Lote {
         this.punto2 = punto2;
     }
 
+    public void setPuntos(String s) {
+        this.puntos = s;
+    }
+
     public void setProductor(Productor productor) {
         this.productor = productor;
     }
@@ -71,10 +79,10 @@ public class Lote {
     private void inicio() {
         this.punto1 = new double[2];
         this.punto2 = new double[2];
+        this.puntos = this.toString();
     }
     @Override
-    public String toString() {
-        this.puntos = "(" + Double.toString(this.punto1[0]) + "," + Double.toString(this.punto1[1]) + ") ; (" + Double.toString(this.punto2[0]) + "," + Double.toString(this.punto2[1]) + ")";
-        return this.puntos;
+    public final String toString() {
+        return "(" + Double.toString(this.punto1[0]) + "," + Double.toString(this.punto1[1]) + ") ; (" + Double.toString(this.punto2[0]) + "," + Double.toString(this.punto2[1]) + ")";
     }
 }

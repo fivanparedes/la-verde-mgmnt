@@ -75,8 +75,7 @@ public class ControladorVistaProductores implements Initializable {
         columnaNombres.setCellValueFactory(new PropertyValueFactory<>("nombres"));
         columnaApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         columnaCuit.setCellValueFactory(new PropertyValueFactory<>("cuit"));
-        //TODO: hacer andar el servicio.
-        //tabla.getItems().addAll(this.servicio.listarProductores());
+        tabla.getItems().addAll(servicio.listarProductores());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdLote.setCellValueFactory(new PropertyValueFactory<>("idLote"));
         columnaPuntos.setCellValueFactory(new PropertyValueFactory<>("puntos"));
@@ -91,9 +90,10 @@ public class ControladorVistaProductores implements Initializable {
     private void clicNuevo() {
         tabla.getSelectionModel().clearSelection();
         try {
-            servicio.agregarProdutor(Long.getLong(fieldCuit.getText()), fieldApellidos.getText(), fieldNombres.getText());
+            servicio.agregarProdutor(Long.parseLong(fieldCuit.getText()), fieldApellidos.getText(), fieldNombres.getText());
             limpiar();
         } catch (Exception e) {
+            //TODO: diagnosticar por que no agrega datos
             VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", "Revise los datos ingresados en los campos de arriba.");
         }
     }
@@ -110,7 +110,7 @@ public class ControladorVistaProductores implements Initializable {
     private void cambiarDatos() {
         productorSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (productorSeleccionado != null) {
-            servicio.editarProductor(productorSeleccionado.getIdProductor(), Long.getLong(fieldCuit.getText()), fieldApellidos.getText(), fieldNombres.getText());
+            servicio.editarProductor(productorSeleccionado.getIdProductor(), Long.parseLong(fieldCuit.getText()), fieldApellidos.getText(), fieldNombres.getText());
             limpiar();
         }    
     }

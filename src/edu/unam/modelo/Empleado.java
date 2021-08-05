@@ -113,4 +113,9 @@ public class Empleado {
     public void setCuil(Long i) {
         this.cuil = i;
     }
+
+    @Override
+    public final String toString() {
+        return Long.toString(this.getIdEmpleado()) + ". " + Long.toString(this.getDni()) + " " + this.getApellidos() + ", " + this.getNombres();
+    }
 }
