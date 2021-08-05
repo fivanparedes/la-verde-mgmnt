@@ -96,9 +96,9 @@
             <Button fx:id="agregarCuadro" layoutX="200.0" layoutY="360.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="+" />
             <Button fx:id="quitarCuadro" layoutX="200.0" layoutY="400.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="-" />
             <Button fx:id="cambiarCuadro" layoutX="200.0" layoutY="440.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="Cambiar" />
-            <Button fx:id="agregarEmpleado" layoutX="490.0" layoutY="360.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="+" />
-            <Button fx:id="quitarEmpleado" layoutX="490.0" layoutY="400.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="-" />
-            <Button fx:id="cambiarEmpleado" layoutX="490.0" layoutY="440.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="Cambiar" />
+            <Button fx:id="agregarEmpleado" layoutX="490.0" layoutY="360.0" mnemonicParsing="false" onAction="#agregarEmpleado" prefHeight="24.0" prefWidth="76.0" text="+" />
+            <Button fx:id="quitarEmpleado" layoutX="490.0" layoutY="400.0" mnemonicParsing="false" onAction="#quitarEmpleado" prefHeight="24.0" prefWidth="76.0" text="-" />
+            <Button fx:id="cambiarEmpleado" layoutX="490.0" layoutY="440.0" mnemonicParsing="false" onAction="#cambiarEmpleado" prefHeight="24.0" prefWidth="76.0" text="Cambiar" />
       </children>
     </AnchorPane>
    </children>
