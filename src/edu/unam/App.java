@@ -1,4 +1,9 @@
 package edu.unam;
+/* import edu.unam.controladores.ControladorVistaSecaderos;
+import edu.unam.repositorio.Repositorio;
+import edu.unam.servicios.ServicioSecadero;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence; */
 //import javafx.scene.control.Label;
 //import javafx.scene.text.Font;
 import javafx.application.Application;
@@ -19,6 +24,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        /* EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaVerdeSA");
+        ServicioSecadero sc = new ServicioSecadero(new Repositorio(emf));
+        ControladorVistaSecaderos.enlazarServicio(sc); */
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("./vistas/VistaMain.fxml"));     
         Parent root = (Parent)fxmlLoader.load();
         //ControladorVistaMain controlador = fxmlLoader.<ControladorVistaMain>getController();
