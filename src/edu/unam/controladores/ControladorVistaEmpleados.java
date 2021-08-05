@@ -195,4 +195,8 @@ public class ControladorVistaEmpleados implements Initializable {
     public VBox getContenedor() {
         return this.contenedor;
     }
+
+    public static ServicioEmpleado getServicioEmpleado() {
+        return servicio;
+    }
 }
