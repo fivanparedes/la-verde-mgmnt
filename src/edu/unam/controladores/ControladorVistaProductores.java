@@ -93,7 +93,7 @@ public class ControladorVistaProductores implements Initializable {
             limpiar();
         } catch (Exception e) {
             e.printStackTrace();
-            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", "Revise los datos ingresados en los campos de arriba.");
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", e.getMessage());
         }
     }
     @FXML
