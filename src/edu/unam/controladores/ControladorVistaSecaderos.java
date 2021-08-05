@@ -149,5 +149,9 @@ public class ControladorVistaSecaderos implements Initializable{
     */
     public VBox getContenedor() {
         return this.contenedor;
-    } 
+    }
+    
+    public static ServicioSecadero getServicioSecadero() {
+        return servicio;
+    }
 }
