@@ -61,6 +61,7 @@
                   <Button fx:id="btnSecaderos" layoutX="13.0" layoutY="161.0" mnemonicParsing="false" onAction="#mostrarSecaderos" prefHeight="34.0" prefWidth="194.0" text="Secaderos" />
                   <Button fx:id="btnLotes" layoutX="14.0" layoutY="204.0" mnemonicParsing="false" onAction="#mostrarLotes" prefHeight="34.0" prefWidth="89.0" text="Lotes" />
                   <Button fx:id="btnCuadros" layoutX="119.0" layoutY="204.0" mnemonicParsing="false" onAction="#mostrarCuadros" prefHeight="34.0" prefWidth="89.0" text="Cuadros" />
+                  <Button fx:id="btnAbout" layoutX="10.0" layoutY="313.0" mnemonicParsing="false" onAction="#mostrarAbout" prefHeight="30.0" prefWidth="194.0" text="Acerca de..." />
           </children>
         </AnchorPane>
             <Group fx:id="cambiante">

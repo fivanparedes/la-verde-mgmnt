@@ -68,16 +68,18 @@ public class ControladorVistaProductores implements Initializable {
     //La interfaz Initializable te exige redefinir el metodo initialize(), hasta ahora no le di alguna funcionalidad significativa.
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println("Successfully initialized");
         tabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idProductor"));
         columnaNombres.setCellValueFactory(new PropertyValueFactory<>("nombres"));
         columnaApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         columnaCuit.setCellValueFactory(new PropertyValueFactory<>("cuit"));
-        tabla.getItems().addAll(servicio.listarProductores());
+        limpiar();
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdLote.setCellValueFactory(new PropertyValueFactory<>("idLote"));
         columnaPuntos.setCellValueFactory(new PropertyValueFactory<>("puntos"));
+        btnCambiar.setDisable(true);
+        btnEliminar.setDisable(true);
+        System.out.println("Successfully initialized");
     }
 
     @FXML
@@ -124,30 +126,32 @@ public class ControladorVistaProductores implements Initializable {
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificarlo. \n No podrá borrar un registro si existen lotes asociados.");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificarlo. \n No podrá borrar un registro si existen lotes asociados. Dichos lotes se agregan en su propio apartado.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */
     @FXML
     private void cargarDatos() {
         productorSeleccionado = tabla.getSelectionModel().getSelectedItem();
+        lotes.getItems().clear();
         if (productorSeleccionado != null) {
-            lotes.getItems().clear();
-            //etiquetaIdEmpleado.setText(String.valueOf(productorSeleccionado.getIdEmpleado()));
             fieldNombres.setText(productorSeleccionado.getNombres());
             fieldApellidos.setText(productorSeleccionado.getApellidos());
             fieldCuit.setText(Long.toString(productorSeleccionado.getCuit()));
             lotes.getItems().addAll(productorSeleccionado.getLotes());
+            btnCambiar.setDisable(false);
+            btnEliminar.setDisable(false);
         }
     }
     private void limpiar() {
         // limpiamos
+        btnCambiar.setDisable(true);
+        btnEliminar.setDisable(true);
         lotes.getItems().clear();
         editWarningLabel.setText("Actualizando...");
         fieldNombres.clear();
         fieldApellidos.clear();
         fieldCuit.clear();
-        lotes.getItems().clear();
         tabla.getItems().clear();
         tabla.getItems().addAll(servicio.listarProductores());
         editWarningLabel.setText(" ");

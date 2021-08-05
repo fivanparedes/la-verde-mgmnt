@@ -83,6 +83,6 @@ public class Lote {
     }
     @Override
     public final String toString() {
-        return "(" + Double.toString(this.punto1[0]) + "," + Double.toString(this.punto1[1]) + ") ; (" + Double.toString(this.punto2[0]) + "," + Double.toString(this.punto2[1]) + ")";
+        return Integer.toString(this.getIdLote()) + ". (" + Double.toString(this.punto1[0]) + "," + Double.toString(this.punto1[1]) + ") ; (" + Double.toString(this.punto2[0]) + "," + Double.toString(this.punto2[1]) + ")";
     }
 }

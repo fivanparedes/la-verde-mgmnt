@@ -102,7 +102,7 @@ public class ControladorVistaEmpleados implements Initializable {
         columnaNacimiento.setCellValueFactory(new PropertyValueFactory<>("nacimiento"));
         columnaCuil.setCellValueFactory(new PropertyValueFactory<>("cuil"));
         columnaIngreso.setCellValueFactory(new PropertyValueFactory<>("ingreso"));
-        tabla.getItems().addAll(servicio.listarEmpleados());
+        limpiar();
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCosecha.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
         columnaFechaCosecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -152,16 +152,15 @@ public class ControladorVistaEmpleados implements Initializable {
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n No podra borrar un registro si existen cosechas asociadas.");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n No podra borrar un registro si existen cosechas asociadas. Dichas cosechas se agregan en su propio apartado.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */
     @FXML
     private void cargarDatos() {
         empleadoSeleccionado = tabla.getSelectionModel().getSelectedItem();
+        cosechas.getItems().clear();
         if (empleadoSeleccionado != null) {
-            cosechas.getItems().clear();
-            //etiquetaIdEmpleado.setText(String.valueOf(empleadoSeleccionado.getIdEmpleado()));
             fieldNombres.setText(empleadoSeleccionado.getNombres());
             fieldApellidos.setText(empleadoSeleccionado.getApellidos());
             fieldDni.setText(Long.toString(empleadoSeleccionado.getDni()));

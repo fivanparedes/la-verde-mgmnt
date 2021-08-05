@@ -73,8 +73,7 @@ public class ControladorVistaSecaderos implements Initializable{
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idSecadero"));
         columnaCuit.setCellValueFactory(new PropertyValueFactory<>("cuit"));
         columnaRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
-        //TODO: hacer andar el servicio.
-        //tabla.getItems().addAll(servicio.listarSecaderos());
+        tabla.getItems().addAll(servicio.listarSecaderos());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCosecha.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
         columnaFechaCosecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -89,10 +88,11 @@ public class ControladorVistaSecaderos implements Initializable{
     private void clicNuevo() {
         tabla.getSelectionModel().clearSelection();
         try {
-            servicio.agregarSecadero(Long.getLong(fieldCuit.getText()), fieldRazonSocial.getText());
+            servicio.agregarSecadero(Long.parseLong(fieldCuit.getText().trim()), fieldRazonSocial.getText().trim());
             limpiar();
         } catch (Exception e) {
             VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", e.getMessage());
+            e.printStackTrace();
         }
     }
     @FXML
@@ -111,7 +111,7 @@ public class ControladorVistaSecaderos implements Initializable{
         secaderoSeleccionado = tabla.getSelectionModel().getSelectedItem();
         try {
             if (secaderoSeleccionado != null) {
-                servicio.editarSecadero(secaderoSeleccionado.getIdSecadero(), Long.getLong(fieldCuit.getText()), fieldRazonSocial.getText(), secaderoSeleccionado.getCosechas());
+                servicio.editarSecadero(secaderoSeleccionado.getIdSecadero(), Long.parseLong(fieldCuit.getText()), fieldRazonSocial.getText(), secaderoSeleccionado.getCosechas());
                 limpiar();
             }    
         } catch (Exception e) {
@@ -122,7 +122,7 @@ public class ControladorVistaSecaderos implements Initializable{
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Secaderos", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n Las cosechas se agregan en su respectiva pantalla.");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Secaderos", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. \n El CUIT van sin puntos ni comas.\n Las cosechas se agregan en su respectiva pantalla.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */
@@ -138,7 +138,6 @@ public class ControladorVistaSecaderos implements Initializable{
     }
     private void limpiar() {
         // limpiamos
-        cosechas.getItems().clear();
         editWarningLabel.setText("Actualizando...");
         fieldCuit.clear();
         fieldRazonSocial.clear();

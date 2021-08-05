@@ -70,7 +70,7 @@
             <Label layoutX="385.0" layoutY="99.0" text="CUIT" />
             <TextField fx:id="fieldCuit" layoutX="424.0" layoutY="95.0" onKeyTyped="#showEditWarning" />
             <Button fx:id="btnHelp" layoutX="668.0" layoutY="20.0" mnemonicParsing="false" onAction="#mostrarAyuda" text="?" />
-            <TableView layoutX="743.0" layoutY="134.0" prefHeight="558.0" prefWidth="381.0">
+            <TableView fx:id="cosechas" layoutX="743.0" layoutY="134.0" prefHeight="558.0" prefWidth="381.0">
               <columns>
                 <TableColumn fx:id="columnaIdCosecha" prefWidth="131.0" resizable="false" text="Cosecha" />
                   <TableColumn fx:id="columnaFechaCosecha" prefWidth="169.0" resizable="false" text="Fecha" />
