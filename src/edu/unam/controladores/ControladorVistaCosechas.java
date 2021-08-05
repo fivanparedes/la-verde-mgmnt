@@ -134,7 +134,7 @@ public class ControladorVistaCosechas implements Initializable {
         Cosecha nuevo = new Cosecha();
         tabla.getSelectionModel().clearSelection();
         try {
-            idSecadero = Integer.getInteger(fieldSecadero.getText()).intValue();
+            idSecadero = Integer.parseInt(fieldSecadero.getText());
             aux = ControladorVistaSecaderos.getServicioSecadero().buscarSecadero(idSecadero);
             if (aux != null) {
                 servicioCosecha.agregarCosecha(fieldFecha.getValue(), cuadros.getItems(), empleados.getItems(), aux);
@@ -147,11 +147,11 @@ public class ControladorVistaCosechas implements Initializable {
                     }
                 }
                 if (!(fieldPesoEnt.getText().equals(""))) {
-                    peso = Float.valueOf(fieldPesoEnt.getText()).floatValue();
+                    peso = Float.parseFloat(fieldPesoEnt.getText());
                     servicioEntrega.agregarEntrega(nuevo.getIdCosecha(), peso, fieldTiempoEnt.getValue());
                 }
                 if (!(fieldPesoReg.getText().equals(""))) {
-                    peso = Float.valueOf(fieldPesoReg.getText()).floatValue();
+                    peso = Float.parseFloat(fieldPesoReg.getText());
                     servicioRegistro.agregarRegistro(nuevo.getIdCosecha(), peso, fieldTiempoReg.getValue());
                 }
             }        
@@ -189,7 +189,7 @@ public class ControladorVistaCosechas implements Initializable {
         Registro reg;
         cosechaSeleccionada = tabla.getSelectionModel().getSelectedItem();
         if (cosechaSeleccionada != null) {
-            idSecadero = Integer.getInteger(fieldSecadero.getText()).intValue();
+            idSecadero = Integer.parseInt(fieldSecadero.getText());
             aux = ControladorVistaSecaderos.getServicioSecadero().buscarSecadero(idSecadero);
             if (aux != null) {
                 servicioCosecha.editarCosecha(cosechaSeleccionada.getIdCosecha(), fieldFecha.getValue(), cuadros.getItems(), empleados.getItems(), aux);
@@ -199,12 +199,12 @@ public class ControladorVistaCosechas implements Initializable {
                 if (fieldPesoEnt.getText().equals("")) {
                     servicioEntrega.eliminarEntrega(cosechaSeleccionada.getIdCosecha());
                 } else {
-                    peso = Float.valueOf(fieldPesoEnt.getText()).floatValue();
+                    peso = Float.parseFloat(fieldPesoEnt.getText());
                     servicioEntrega.editarEntrega(cosechaSeleccionada.getIdCosecha(), peso, fieldTiempoEnt.getValue());
                 }
             } else {
                 if (!(fieldPesoEnt.getText().equals(""))) {
-                    peso = Float.valueOf(fieldPesoEnt.getText()).floatValue();
+                    peso = Float.parseFloat(fieldPesoEnt.getText());
                     servicioEntrega.agregarEntrega(cosechaSeleccionada.getIdCosecha(), peso, fieldTiempoEnt.getValue());
                 }
             }
@@ -213,12 +213,12 @@ public class ControladorVistaCosechas implements Initializable {
                 if (fieldPesoReg.getText().equals("")) {
                     servicioRegistro.eliminarRegistro(cosechaSeleccionada.getIdCosecha());
                 } else {
-                    peso = Float.valueOf(fieldPesoReg.getText()).floatValue();
+                    peso = Float.parseFloat(fieldPesoReg.getText());
                     servicioRegistro.editarRegistro(cosechaSeleccionada.getIdCosecha(), peso, fieldTiempoReg.getValue());
                 }
             } else {
                 if (!(fieldPesoReg.getText().equals(""))) {
-                    peso = Float.valueOf(fieldPesoReg.getText()).floatValue();
+                    peso = Float.parseFloat(fieldPesoReg.getText());
                     servicioRegistro.agregarRegistro(cosechaSeleccionada.getIdCosecha(), peso, fieldTiempoReg.getValue());
                 }
             }
@@ -234,7 +234,7 @@ public class ControladorVistaCosechas implements Initializable {
         aux = empleados.getItems();
         empleados.getSelectionModel().clearSelection();
         try {
-            idEmpleado = Long.getLong(fieldEmpleado.getText()).longValue();
+            idEmpleado = Long.parseLong(fieldEmpleado.getText());
             busqueda = ControladorVistaEmpleados.getServicioEmpleado().buscarEmpleado(idEmpleado);
             if (busqueda != null) {
                 aux.add(busqueda);
@@ -269,7 +269,7 @@ public class ControladorVistaCosechas implements Initializable {
         aux = cuadros.getItems();
         cuadros.getSelectionModel().clearSelection();
         try {
-            idCuadro = Integer.getInteger(fieldCuadro.getText()).intValue();
+            idCuadro = Integer.parseInt(fieldCuadro.getText());
             busqueda = ControladorVistaCuadros.getServicioCuadro().buscarCuadro(idCuadro);
             if (busqueda != null) {
                 aux.add(busqueda);
