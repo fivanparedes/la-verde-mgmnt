@@ -118,7 +118,7 @@ public class ControladorVistaCosechas implements Initializable {
         cuadros.getSelectionModel().selectedItemProperty().addListener(e -> cargarCuadro());
         columnaIdEmpleado.setCellValueFactory(new PropertyValueFactory<>("idEmpleado"));
         empleados.getSelectionModel().selectedItemProperty().addListener(e -> cargarEmpleado());
-        tabla.getItems().addAll(servicioCosecha.listarCosechas());
+        limpiar();
     }
 
     @FXML
