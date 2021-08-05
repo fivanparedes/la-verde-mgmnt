@@ -33,7 +33,7 @@ public class ServicioSecadero extends Servicio {
     }
 
     public void editarSecadero(int idSecadero, long cuit, String razonSocial, List<Cosecha> cosechas) {
-        if (razonSocial.trim().length() == 0 || cosechas == null) {
+        if (razonSocial.trim().length() == 0 || cuit <= 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();

@@ -102,7 +102,7 @@ public class ControladorVistaEmpleados implements Initializable {
         columnaCuil.setCellValueFactory(new PropertyValueFactory<>("cuil"));
         columnaIngreso.setCellValueFactory(new PropertyValueFactory<>("ingreso"));
         //TODO: hacer andar el servicio.
-        //tabla.getItems().addAll(this.servicio.listarEmpleados());
+        tabla.getItems().addAll(servicio.listarEmpleados());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCosecha.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
         columnaFechaCosecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -117,10 +117,11 @@ public class ControladorVistaEmpleados implements Initializable {
     private void clicNuevo() {
         tabla.getSelectionModel().clearSelection();
         try {
-            servicio.agregarEmpleado(fieldNombres.getText().trim(), fieldApellidos.getText().trim(), Long.getLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.getLong(fieldCuil.getText()));
+            servicio.agregarEmpleado(fieldNombres.getText().trim(), fieldApellidos.getText().trim(), Long.parseLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.parseLong(fieldCuil.getText()));
             limpiar();
         } catch (Exception e) {
             VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", e.getMessage());
+            e.printStackTrace();
         }
     }
     @FXML
@@ -136,7 +137,7 @@ public class ControladorVistaEmpleados implements Initializable {
     private void cambiarDatos() {
         empleadoSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (empleadoSeleccionado != null) {
-            servicio.editarEmpleado(empleadoSeleccionado.getIdEmpleado(), fieldNombres.getText(), fieldApellidos.getText(), Long.getLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.getLong(fieldCuil.getText()));
+            servicio.editarEmpleado(empleadoSeleccionado.getIdEmpleado(), fieldNombres.getText(), fieldApellidos.getText(), Long.parseLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.parseLong(fieldCuil.getText()));
             limpiar();
         }    
     }
@@ -165,7 +166,6 @@ public class ControladorVistaEmpleados implements Initializable {
     }
     private void limpiar() {
         // limpiamos
-        cosechas.getItems().clear();
         editWarningLabel.setText("Actualizando...");
         fieldNombres.clear();
         fieldApellidos.clear();

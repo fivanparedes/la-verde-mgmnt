@@ -76,4 +76,9 @@ public class Productor {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
+
+    @Override
+    public final String toString() {
+        return Integer.toString(this.getIdProductor()) + ". " + Long.toString(this.getCuit()) + " " + this.getApellidos() + ", " + this.getNombres();
+    }
 }

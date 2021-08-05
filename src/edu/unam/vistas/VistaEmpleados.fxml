@@ -86,7 +86,7 @@
             <Label layoutX="385.0" layoutY="179.0" prefWidth="212.0" text="Fecha de ingreso a la empresa" />
             <DatePicker fx:id="fieldIngreso" layoutX="424.0" layoutY="207.0" onAction="#showEditWarning" prefHeight="24.0" prefWidth="171.0" />
             <Button fx:id="btnHelp" layoutX="741.0" layoutY="20.0" mnemonicParsing="false" onAction="#mostrarAyuda" text="?" />
-            <TableView layoutX="722.0" layoutY="94.0" prefHeight="147.0" prefWidth="381.0">
+            <TableView fx:id="cosechas" layoutX="722.0" layoutY="94.0" prefHeight="147.0" prefWidth="381.0">
               <columns>
                 <TableColumn fx:id="columnaIdCosecha" prefWidth="131.0" resizable="false" text="Cosecha" />
                   <TableColumn fx:id="columnaFechaCosecha" prefWidth="169.0" resizable="false" text="Fecha" />

@@ -21,7 +21,7 @@ public class Cuadro {
     private Lote lote;
 
     @ManyToMany(targetEntity = Cosecha.class, mappedBy = "cuadros")
-    private List<Cosecha> cosechas = new ArrayList<>();
+    private List<Cosecha> cosechas;
 
     public Cuadro() {
         this.setDescripcion("");
@@ -30,6 +30,7 @@ public class Cuadro {
     public Cuadro(String descripcion, Lote lote) {
         this.setDescripcion(descripcion);
         this.setLote(lote);
+        this.cosechas = new ArrayList<>();
     }
 
     public int getIdCuadro() {
@@ -54,5 +55,9 @@ public class Cuadro {
 
     public void setLote(Lote lote) {
         this.lote = lote;
+    }
+
+    public final String toString() {
+        return Integer.toString(this.getIdCuadro()) + ". " + this.getDescripcion();
     }
 }

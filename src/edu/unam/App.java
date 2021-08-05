@@ -1,9 +1,17 @@
 package edu.unam;
-/* import edu.unam.controladores.ControladorVistaSecaderos;
+import edu.unam.controladores.ControladorVistaCuadros;
+import edu.unam.controladores.ControladorVistaEmpleados;
+import edu.unam.controladores.ControladorVistaLotes;
+import edu.unam.controladores.ControladorVistaProductores;
+import edu.unam.controladores.ControladorVistaSecaderos;
 import edu.unam.repositorio.Repositorio;
+import edu.unam.servicios.ServicioCuadro;
+import edu.unam.servicios.ServicioEmpleado;
+import edu.unam.servicios.ServicioLote;
+import edu.unam.servicios.ServicioProductor;
 import edu.unam.servicios.ServicioSecadero;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence; */
+import jakarta.persistence.Persistence;
 //import javafx.scene.control.Label;
 //import javafx.scene.text.Font;
 import javafx.application.Application;
@@ -24,9 +32,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        /* EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaVerdeSA");
-        ServicioSecadero sc = new ServicioSecadero(new Repositorio(emf));
-        ControladorVistaSecaderos.enlazarServicio(sc); */
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaVerdeSA");
+        Repositorio repo = new Repositorio(emf);
+        ServicioEmpleado se = new ServicioEmpleado(repo);
+        ServicioSecadero sc = new ServicioSecadero(repo);
+        ServicioProductor sp = new ServicioProductor(repo);
+        ServicioLote sl = new ServicioLote(repo);
+        ServicioCuadro scu = new ServicioCuadro(repo);
+        ControladorVistaEmpleados.enlazarServicio(se);
+        ControladorVistaProductores.enlazarServicio(sp);
+        ControladorVistaSecaderos.enlazarServicio(sc);
+        ControladorVistaLotes.enlazarServicio(sl, sp);
+        ControladorVistaCuadros.enlazarServicio(scu, sl);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("./vistas/VistaMain.fxml"));     
         Parent root = (Parent)fxmlLoader.load();
         //ControladorVistaMain controlador = fxmlLoader.<ControladorVistaMain>getController();
