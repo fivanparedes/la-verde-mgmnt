@@ -99,18 +99,25 @@ public class ControladorVistaSecaderos implements Initializable{
     private void clicEliminar() {
         secaderoSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (secaderoSeleccionado != null) {
-            servicio.eliminarSecadero(secaderoSeleccionado.getIdSecadero());
-            limpiar();
+            if (servicio.eliminarSecadero(secaderoSeleccionado.getIdSecadero()) == 1) {
+                VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al borrar", "No se pudo borrar el elemento. Probablemente hayan cosechas vinculadas.");
+            }
+            limpiar(); 
         }
     }
 
     @FXML
     private void cambiarDatos() {
         secaderoSeleccionado = tabla.getSelectionModel().getSelectedItem();
-        if (secaderoSeleccionado != null) {
-            servicio.editarSecadero(secaderoSeleccionado.getIdSecadero(), Long.getLong(fieldCuit.getText()), fieldRazonSocial.getText(), secaderoSeleccionado.getCosechas());
-            limpiar();
-        }    
+        try {
+            if (secaderoSeleccionado != null) {
+                servicio.editarSecadero(secaderoSeleccionado.getIdSecadero(), Long.getLong(fieldCuit.getText()), fieldRazonSocial.getText(), secaderoSeleccionado.getCosechas());
+                limpiar();
+            }    
+        } catch (Exception e) {
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al modificar los datos", e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML

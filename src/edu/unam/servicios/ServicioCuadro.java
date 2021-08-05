@@ -24,8 +24,11 @@ public class ServicioCuadro extends Servicio {
         if (!(this.repositorio.buscarTodos(Lote.class).contains(lote))) {
             throw new IllegalArgumentException("El lote no existe");
         }
+        if (descripcion.trim().length() == 0) {
+            throw new IllegalArgumentException("Hay un problema con los datos.");
+        }
         this.repositorio.iniciarTransaccion();
-        this.repositorio.insertar(new Cuadro(descripcion, lote));
+        this.repositorio.insertar(new Cuadro(descripcion.trim(), lote));
         this.repositorio.confirmarTransaccion();
     }
 
@@ -36,7 +39,7 @@ public class ServicioCuadro extends Servicio {
         this.repositorio.iniciarTransaccion();
         Cuadro cuadro = buscarCuadro(idCuadro);
         if (cuadro != null) {
-            cuadro.setDescripcion(descripcion);
+            cuadro.setDescripcion(descripcion.trim());
             cuadro.setLote(lote);
             this.repositorio.modificar(cuadro);
             this.repositorio.confirmarTransaccion();

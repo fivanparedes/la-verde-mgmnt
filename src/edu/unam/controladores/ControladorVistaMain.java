@@ -29,7 +29,7 @@ public class ControladorVistaMain implements Initializable {
     private Group cambiante;
 
     @FXML
-    void mostrarEmpleados(ActionEvent event) throws IOException {
+    private void mostrarEmpleados(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnEmpleados.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlEmp = new FXMLLoader(getClass().getResource("../vistas/VistaEmpleados.fxml"));     
@@ -41,7 +41,7 @@ public class ControladorVistaMain implements Initializable {
     }
 
     @FXML
-    void mostrarProductores(ActionEvent event) throws IOException {
+    private void mostrarProductores(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnProductores.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaProductores.fxml"));
@@ -53,7 +53,7 @@ public class ControladorVistaMain implements Initializable {
     }
 
     @FXML
-    void mostrarSecaderos(ActionEvent event) throws IOException {
+    private void mostrarSecaderos(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnSecaderos.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaSecaderos.fxml"));
@@ -65,7 +65,7 @@ public class ControladorVistaMain implements Initializable {
     }
 
     @FXML
-    void mostrarCosechas(ActionEvent event) throws IOException {
+    private void mostrarCosechas(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnCosechas.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCosechas.fxml"));
@@ -77,7 +77,7 @@ public class ControladorVistaMain implements Initializable {
     }
 
     @FXML
-    void mostrarLotes(ActionEvent event) throws IOException {
+    private void mostrarLotes(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnLotes.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaLotes.fxml"));
@@ -89,7 +89,7 @@ public class ControladorVistaMain implements Initializable {
     }
 
     @FXML
-    void mostrarCuadros(ActionEvent event) throws IOException {
+    private void mostrarCuadros(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnCuadros.getScene().getWindow();
         cambiante.getChildren().clear();
         FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCuadros.fxml"));

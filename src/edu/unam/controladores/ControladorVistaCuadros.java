@@ -22,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
+//TODO: buscar errores
 public class ControladorVistaCuadros implements Initializable {
     
     private Cuadro cuadroSeleccionado;
@@ -68,12 +69,10 @@ public class ControladorVistaCuadros implements Initializable {
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println("Successfully initialized");
         tabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idCuadro"));
         columnaDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         columnaLote.setCellValueFactory(new PropertyValueFactory<>("lote"));
-        //TODO: hacer andar el servicio.
         tabla.getItems().addAll(servicio.listarCuadros());
         comboLotes.getItems().addAll(servicioL.listarLotes());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
@@ -81,6 +80,7 @@ public class ControladorVistaCuadros implements Initializable {
         columnaFechaCosecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         btnCambiar.setDisable(true);
         btnEliminar.setDisable(true);
+        System.out.println("Successfully initialized");
     }
 
     @FXML
@@ -103,7 +103,9 @@ public class ControladorVistaCuadros implements Initializable {
     private void clicEliminar() {
         cuadroSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (cuadroSeleccionado != null) {
-            servicio.eliminarCuadro(cuadroSeleccionado.getIdCuadro());
+            if (servicio.eliminarCuadro(cuadroSeleccionado.getIdCuadro()) == 1) {
+                VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al borrar", "No se pudo borrar el elemento. Probablemente hayan cosechas vinculadas.");
+            }
             limpiar();
         }
     }
@@ -111,15 +113,20 @@ public class ControladorVistaCuadros implements Initializable {
     @FXML
     private void cambiarDatos() {
         cuadroSeleccionado = tabla.getSelectionModel().getSelectedItem();
-        if (cuadroSeleccionado != null) {
-            servicio.editarCuadro(cuadroSeleccionado.getIdCuadro(), fieldDescripcion.getText(), comboLotes.getSelectionModel().getSelectedItem());
-            limpiar();
-        }    
+        try {
+            if (cuadroSeleccionado != null) {
+                servicio.editarCuadro(cuadroSeleccionado.getIdCuadro(), fieldDescripcion.getText(), comboLotes.getSelectionModel().getSelectedItem());
+                limpiar();
+            }  
+        } catch (Exception e) {
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al modificar los datos", e.getMessage());
+            e.printStackTrace();
+        }     
     }
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Lotes", "Mensaje de ayuda:", "Para agregar cuadros, tiene que haber un lote definido.");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Lotes", "Mensaje de ayuda:", "Para agregar cuadros, tiene que haber un lote definido. La descripcion puede ser 'Cuadro 1', 'Cuadro 2', 'Cuadro N'.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */

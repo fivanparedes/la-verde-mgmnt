@@ -1,6 +1,7 @@
 package edu.unam.servicios;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import edu.unam.repositorio.Repositorio;
@@ -27,6 +28,9 @@ public class ServicioEmpleado extends Servicio {
         if (dni <= 0 || fechaIngreso == null || nacimiento == null || cuil <= 0) {
             throw new IllegalArgumentException("Datos erróneos.");
         }
+        if (fechaIngreso.isAfter(LocalDate.now()) || ChronoUnit.YEARS.between(nacimiento, LocalDate.now()) < 18) {
+            throw new IllegalArgumentException("Verifique que las fechas sean válidas.");
+        }
         this.repositorio.iniciarTransaccion();
         this.repositorio.insertar(new Empleado(legajo.toUpperCase().trim(), dni, apellidos.toUpperCase().trim(), nombres.toUpperCase().trim(), fechaIngreso, nacimiento, cuil));
         this.repositorio.confirmarTransaccion();
@@ -40,6 +44,12 @@ public class ServicioEmpleado extends Servicio {
     public int editarEmpleado(long idEmpleado, String nombres, String apellidos, Long dni, String legajo, LocalDate fechaIngreso, LocalDate nacimiento, Long cuil) {
         if (nombres.trim().length() == 0 || apellidos.trim().length() == 0 || legajo.trim().length() == 0) {
             throw new IllegalArgumentException("Faltan datos");
+        }
+        if (dni <= 0 || fechaIngreso == null || nacimiento == null || cuil <= 0) {
+            throw new IllegalArgumentException("Datos erróneos.");
+        }
+        if (fechaIngreso.isAfter(LocalDate.now()) || ChronoUnit.YEARS.between(nacimiento, LocalDate.now()) < 18) {
+            throw new IllegalArgumentException("Verifique que las fechas sean válidas.");
         }
         this.repositorio.iniciarTransaccion();
         Empleado empleado = buscarEmpleado(idEmpleado);

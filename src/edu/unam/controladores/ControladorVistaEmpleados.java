@@ -24,6 +24,8 @@ import javafx.scene.layout.VBox;
 /*  Esta clase es obligatoria ya que el Scene Builder lo exige para su vista. A la hora de referenciar este controlador desde Scene Builder, utilizar:
     edu.unam.controladores.ControladorVistaEmpleados (por ejemplo)
 */
+
+//TODO: buscar errores
 public class ControladorVistaEmpleados implements Initializable {
     private Empleado empleadoSeleccionado;
     private static ServicioEmpleado servicio;
@@ -90,8 +92,7 @@ public class ControladorVistaEmpleados implements Initializable {
     //La interfaz Initializable te exige redefinir el metodo initialize(), hasta ahora no le di alguna funcionalidad significativa.
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println("Successfully initialized");
-        editWarningLabel.setOpacity(0);
+        System.out.println("Successfully initialized ControladorVistaEmpleados");
         tabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idEmpleado"));
         columnaLegajo.setCellValueFactory(new PropertyValueFactory<>("legajo"));
@@ -101,7 +102,6 @@ public class ControladorVistaEmpleados implements Initializable {
         columnaNacimiento.setCellValueFactory(new PropertyValueFactory<>("nacimiento"));
         columnaCuil.setCellValueFactory(new PropertyValueFactory<>("cuil"));
         columnaIngreso.setCellValueFactory(new PropertyValueFactory<>("ingreso"));
-        //TODO: hacer andar el servicio.
         tabla.getItems().addAll(servicio.listarEmpleados());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCosecha.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
@@ -128,7 +128,9 @@ public class ControladorVistaEmpleados implements Initializable {
     private void clicEliminar() {
         empleadoSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (empleadoSeleccionado != null) {
-            servicio.eliminarEmpleado(empleadoSeleccionado.getIdEmpleado());
+            if (servicio.eliminarEmpleado(empleadoSeleccionado.getIdEmpleado()) == 1) {
+                VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al borrar", "No se pudo borrar el elemento. Probablemente hayan cosechas vinculadas.");
+            } 
             limpiar();
         }
     }
@@ -136,15 +138,21 @@ public class ControladorVistaEmpleados implements Initializable {
     @FXML
     private void cambiarDatos() {
         empleadoSeleccionado = tabla.getSelectionModel().getSelectedItem();
-        if (empleadoSeleccionado != null) {
-            servicio.editarEmpleado(empleadoSeleccionado.getIdEmpleado(), fieldNombres.getText(), fieldApellidos.getText(), Long.parseLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.parseLong(fieldCuil.getText()));
-            limpiar();
-        }    
+        try {
+            if (empleadoSeleccionado != null) {
+                servicio.editarEmpleado(empleadoSeleccionado.getIdEmpleado(), fieldNombres.getText(), fieldApellidos.getText(), Long.parseLong(fieldDni.getText()), fieldLegajo.getText(), fieldIngreso.getValue(), fieldNacimiento.getValue(), Long.parseLong(fieldCuil.getText()));
+                limpiar();
+            }    
+        } catch (Exception e) {
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al modificar los datos", e.getMessage());
+            e.printStackTrace();
+        }
+           
     }
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n ");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n No podra borrar un registro si existen cosechas asociadas.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */

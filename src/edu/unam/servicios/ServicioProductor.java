@@ -20,7 +20,7 @@ public class ServicioProductor extends Servicio {
     }
 
     public void agregarProdutor(long cuit, String apellidos, String nombres) {
-        if (apellidos.trim().length() == 0 || nombres.trim().length() == 0) {
+        if (apellidos.trim().length() == 0 || nombres.trim().length() == 0 || cuit < 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();
@@ -30,7 +30,7 @@ public class ServicioProductor extends Servicio {
     }
 
     public void editarProductor(int idProductor, long cuit, String apellidos, String nombres) {
-        if (apellidos.trim().length() == 0 || nombres.trim().length() == 0) {
+        if (apellidos.trim().length() == 0 || nombres.trim().length() == 0 || cuit < 0) {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();

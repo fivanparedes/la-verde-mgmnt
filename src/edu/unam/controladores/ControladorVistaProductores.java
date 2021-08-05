@@ -69,7 +69,6 @@ public class ControladorVistaProductores implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         System.out.println("Successfully initialized");
-        editWarningLabel.setOpacity(0);
         tabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idProductor"));
         columnaNombres.setCellValueFactory(new PropertyValueFactory<>("nombres"));
@@ -93,7 +92,7 @@ public class ControladorVistaProductores implements Initializable {
             servicio.agregarProdutor(Long.parseLong(fieldCuit.getText()), fieldApellidos.getText(), fieldNombres.getText());
             limpiar();
         } catch (Exception e) {
-            //TODO: diagnosticar por que no agrega datos
+            e.printStackTrace();
             VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", "Revise los datos ingresados en los campos de arriba.");
         }
     }
@@ -101,7 +100,9 @@ public class ControladorVistaProductores implements Initializable {
     private void clicEliminar() {
         productorSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (productorSeleccionado != null) {
-            servicio.eliminarProductor(productorSeleccionado.getIdProductor());
+            if (servicio.eliminarProductor(productorSeleccionado.getIdProductor()) == 1) {
+                VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al borrar", "No se pudo borrar el elemento. Probablemente hayan lotes vinculados.");
+            }
             limpiar();
         }
     }
@@ -109,15 +110,21 @@ public class ControladorVistaProductores implements Initializable {
     @FXML
     private void cambiarDatos() {
         productorSeleccionado = tabla.getSelectionModel().getSelectedItem();
-        if (productorSeleccionado != null) {
-            servicio.editarProductor(productorSeleccionado.getIdProductor(), Long.parseLong(fieldCuit.getText()), fieldApellidos.getText(), fieldNombres.getText());
-            limpiar();
-        }    
+        try {
+            if (productorSeleccionado != null) {
+                servicio.editarProductor(productorSeleccionado.getIdProductor(), Long.parseLong(fieldCuit.getText()), fieldApellidos.getText(), fieldNombres.getText());
+                limpiar();
+            }  
+        } catch (Exception e) {
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al modificar los datos", e.getMessage());
+            e.printStackTrace();
+        }
+          
     }
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificarlo. ");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificarlo. \n No podrá borrar un registro si existen lotes asociados.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */
