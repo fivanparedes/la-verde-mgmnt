@@ -25,8 +25,8 @@ public class ServicioProductor extends Servicio {
         }
         this.repositorio.iniciarTransaccion();
         
-        Productor productor = new Productor(cuit, apellidos.toUpperCase().trim(), nombres.toUpperCase().trim());
         List<Productor> listaProductor = listarProductores();
+        Productor productor = new Productor(cuit, apellidos.toUpperCase().trim(), nombres.toUpperCase().trim());
         
         //Control de CUIT
         for (int i=0; i<listaProductor.size();i++){
