@@ -149,4 +149,8 @@ public class ControladorVistaCuadros implements Initializable {
     public VBox getContenedor() {
         return this.contenedor;
     }
+
+    public static ServicioCuadro getServicioCuadro() {
+        return servicio;
+    }
 }
