@@ -79,8 +79,7 @@ public class ControladorVistaLotes implements Initializable {
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idLote"));
         columnaPuntos.setCellValueFactory(new PropertyValueFactory<>("puntos"));
         columnaProductor.setCellValueFactory(new PropertyValueFactory<>("productor"));
-        tabla.getItems().addAll(servicio.listarLotes());
-        comboProductores.getItems().addAll(servicioP.listarProductores());
+        limpiar();
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCuadro.setCellValueFactory(new PropertyValueFactory<>("idCuadro"));
         columnaDescripcionCuadro.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
@@ -103,7 +102,7 @@ public class ControladorVistaLotes implements Initializable {
             limpiar();
         } catch (Exception e) {
             VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar",
-                    "Revise los datos ingresados en los campos de arriba.");
+                    e.getMessage());
             e.printStackTrace();
         }
     }
@@ -172,8 +171,10 @@ public class ControladorVistaLotes implements Initializable {
         fieldY1.clear();
         fieldY2.clear();
         cuadros.getItems().clear();
+        comboProductores.getItems().clear();
         tabla.getItems().clear();
         tabla.getItems().addAll(servicio.listarLotes());
+        comboProductores.getItems().addAll(servicioP.listarProductores());
         editWarningLabel.setText(" ");
     }
 

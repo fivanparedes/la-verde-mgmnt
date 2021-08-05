@@ -73,8 +73,7 @@ public class ControladorVistaCuadros implements Initializable {
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idCuadro"));
         columnaDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         columnaLote.setCellValueFactory(new PropertyValueFactory<>("lote"));
-        tabla.getItems().addAll(servicio.listarCuadros());
-        comboLotes.getItems().addAll(servicioL.listarLotes());
+        limpiar();
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCosecha.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
         columnaFechaCosecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -95,7 +94,7 @@ public class ControladorVistaCuadros implements Initializable {
             servicio.agregarCuadro(fieldDescripcion.getText(), comboLotes.getSelectionModel().getSelectedItem());
             limpiar();
         } catch (Exception e) {
-            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", "Revise los datos ingresados en los campos de arriba.");
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al guardar", e.getMessage());
             e.printStackTrace();
         }
     }
@@ -126,13 +125,14 @@ public class ControladorVistaCuadros implements Initializable {
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Lotes", "Mensaje de ayuda:", "Para agregar cuadros, tiene que haber un lote definido. La descripcion puede ser 'Cuadro 1', 'Cuadro 2', 'Cuadro N'.");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Lotes", "Mensaje de ayuda:", "Para agregar cuadros, tiene que haber un lote definido. La descripcion puede ser 'Cuadro 1', 'Cuadro 2', 'Cuadro N', y se asociará al Lote dado por su ID.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */
     @FXML
     private void cargarDatos() {
         cuadroSeleccionado = tabla.getSelectionModel().getSelectedItem();
+        cosechas.getItems().clear();
         if (cuadroSeleccionado != null) {
             fieldDescripcion.setText(cuadroSeleccionado.getDescripcion());
             comboLotes.getSelectionModel().select(cuadroSeleccionado.getLote());
@@ -149,7 +149,9 @@ public class ControladorVistaCuadros implements Initializable {
         fieldDescripcion.clear();
         cosechas.getItems().clear();
         tabla.getItems().clear();
+        comboLotes.getItems().clear();
         tabla.getItems().addAll(servicio.listarCuadros());
+        comboLotes.getItems().addAll(servicioL.listarLotes());
         editWarningLabel.setText(" ");
     }
 

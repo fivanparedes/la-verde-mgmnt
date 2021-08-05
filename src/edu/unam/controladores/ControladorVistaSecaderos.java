@@ -122,7 +122,7 @@ public class ControladorVistaSecaderos implements Initializable{
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Secaderos", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n Las cosechas se agregan en su respectiva pantalla.");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Secaderos", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. \n El CUIT van sin puntos ni comas.\n Las cosechas se agregan en su respectiva pantalla.");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, y tambien carga la lista de cosechas */
