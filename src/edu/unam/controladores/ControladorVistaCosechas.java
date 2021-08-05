@@ -112,13 +112,13 @@ public class ControladorVistaCosechas implements Initializable {
         columnaId.setCellValueFactory(new PropertyValueFactory<>("idCosecha"));
         columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         columnaSecadero.setCellValueFactory(new PropertyValueFactory<>("secadero"));
-        //TODO: hacer andar el servicio.
-        //tabla.getItems().addAll(servicio.listarCosechas());
+        tabla.getItems().addAll(servicioCosecha.listarCosechas());
         tabla.getSelectionModel().selectedItemProperty().addListener(e -> cargarDatos());
         columnaIdCuadro.setCellValueFactory(new PropertyValueFactory<>("idCuadro"));
         cuadros.getSelectionModel().selectedItemProperty().addListener(e -> cargarCuadro());
         columnaIdEmpleado.setCellValueFactory(new PropertyValueFactory<>("idEmpleado"));
         empleados.getSelectionModel().selectedItemProperty().addListener(e -> cargarEmpleado());
+        tabla.getItems().addAll(servicioCosecha.listarCosechas());
     }
 
     @FXML
