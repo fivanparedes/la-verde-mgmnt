@@ -22,7 +22,7 @@ public class Lote {
     @ManyToOne
     private Productor productor;
 
-    @OneToMany(mappedBy = "lote")
+    @OneToMany(targetEntity = Cuadro.class, mappedBy = "lote")
     private List<Cuadro> cuadros = new ArrayList<>();
 
     public Lote() {

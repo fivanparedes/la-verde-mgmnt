@@ -111,7 +111,9 @@ public class ControladorVistaLotes implements Initializable {
     private void clicEliminar() {
         loteSeleccionado = tabla.getSelectionModel().getSelectedItem();
         if (loteSeleccionado != null) {
-            servicio.eliminarLote(loteSeleccionado.getIdLote());
+            if (servicio.eliminarLote(loteSeleccionado.getIdLote()) == 1) {
+                VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al borrar", "No se pudo borrar el elemento. Probablemente hayan lotes vinculados.");
+            }
             limpiar();
         }
     }
@@ -136,7 +138,7 @@ public class ControladorVistaLotes implements Initializable {
     @FXML
     private void mostrarAyuda() {
         VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Lotes", "Mensaje de ayuda:",
-                "Para agregar lotes, es necesario contar con la existencia de Productores en el sistema, no así para los cuadros que compongan al lote.\n Cada lote se compone de dos puntos, que conforman un par ordenado (x,y).");
+                "Para agregar lotes, es necesario contar con la existencia de Productores en el sistema, no así para los cuadros que compongan al lote.\n Cada lote se compone de dos puntos, que conforman un par ordenado (x,y). Los puntos son las dos puntas de un cuadrado.");
     }
 
     /*
@@ -146,9 +148,8 @@ public class ControladorVistaLotes implements Initializable {
     @FXML
     private void cargarDatos() {
         loteSeleccionado = tabla.getSelectionModel().getSelectedItem();
+        cuadros.getItems().clear();
         if (loteSeleccionado != null) {
-            cuadros.getItems().clear();
-            // etiquetaIdEmpleado.setText(String.valueOf(loteSeleccionado.getIdEmpleado()));
             fieldX1.setText(Double.toString(loteSeleccionado.getPunto1()[0]));
             fieldY1.setText(Double.toString(loteSeleccionado.getPunto1()[1]));
             fieldX2.setText(Double.toString(loteSeleccionado.getPunto2()[0]));
@@ -170,7 +171,6 @@ public class ControladorVistaLotes implements Initializable {
         fieldX2.clear();
         fieldY1.clear();
         fieldY2.clear();
-        cuadros.getItems().clear();
         comboProductores.getItems().clear();
         tabla.getItems().clear();
         tabla.getItems().addAll(servicio.listarLotes());
