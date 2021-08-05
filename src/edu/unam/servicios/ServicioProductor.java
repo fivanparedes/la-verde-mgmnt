@@ -24,7 +24,17 @@ public class ServicioProductor extends Servicio {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();
+        
+        List<Productor> listaProductor = listarProductores();
         Productor productor = new Productor(cuit, apellidos.toUpperCase().trim(), nombres.toUpperCase().trim());
+        
+        //Control de CUIT
+        for (int i=0; i<listaProductor.size();i++){
+            if (productor.getCuit() == listaProductor.get(i).getCuit()){
+                this.repositorio.descartarTransaccion();
+                throw new IllegalArgumentException("Ya existe un productor con ese CUIT");
+            }
+        }
         this.repositorio.insertar(productor);
         this.repositorio.confirmarTransaccion();
     }
@@ -34,12 +44,22 @@ public class ServicioProductor extends Servicio {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();
+        List<Productor> listaProductor = listarProductores();
         Productor productor = buscarProductor(idProductor);
+        
         if (productor != null) {
             productor.setCuit(cuit);
             productor.setApellidos(apellidos);
             productor.setNombres(nombres);
             this.repositorio.modificar(productor);
+            
+            //Control de CUIT
+            for (int i=0; i<listaProductor.size();i++){
+              if (productor.getCuit() == listaProductor.get(i).getCuit() && productor.getIdProductor() != listaProductor.get(i).getIdProductor()){
+                this.repositorio.descartarTransaccion();
+                throw new IllegalArgumentException("Ya existe un productor con ese CUIT");
+                }
+            }
             this.repositorio.confirmarTransaccion();
         } else {
             this.repositorio.descartarTransaccion();

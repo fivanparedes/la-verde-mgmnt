@@ -17,7 +17,7 @@ public class Productor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idProductor;
 
-    private Long cuit;
+    private long cuit;
     private String apellidos;
     private String nombres;
   
@@ -31,7 +31,7 @@ public class Productor {
     }
 
     /* Todos los argumentos son requeridos para dar de alta un Productor */
-    public Productor(Long cuit, String apellidos, String nombres) {
+    public Productor(long cuit, String apellidos, String nombres) {
         this.setCuit(cuit);
         this.setApellidos(apellidos);
         this.setNombres(nombres);
@@ -49,7 +49,7 @@ public class Productor {
         this.lotes = lotes;
     }
 
-    public Long getCuit() {
+    public long getCuit() {
         return this.cuit;
     }
 
@@ -65,7 +65,7 @@ public class Productor {
         return this.lotes;
     }
 
-    public void setCuit(Long cuit) {
+    public void setCuit(long cuit) {
         this.cuit = cuit;
     }
 

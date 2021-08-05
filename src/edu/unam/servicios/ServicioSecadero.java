@@ -27,7 +27,17 @@ public class ServicioSecadero extends Servicio {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();
+
         Secadero secadero = new Secadero(cuit, razonSocial.toUpperCase().trim());
+        List<Secadero> listaSecaderos = listarSecaderos();
+        
+        //Control de CUIT
+        for (int i=0; i<listaSecaderos.size();i++){
+            if (secadero.getCuit() == listaSecaderos.get(i).getCuit()){
+                this.repositorio.descartarTransaccion();
+                throw new IllegalArgumentException("Ya existe un secadero con ese CUIT");
+            }
+        }
         this.repositorio.insertar(secadero);
         this.repositorio.confirmarTransaccion();
     }
@@ -37,12 +47,22 @@ public class ServicioSecadero extends Servicio {
             throw new IllegalArgumentException("Faltan datos");
         }
         this.repositorio.iniciarTransaccion();
+
+        List<Secadero> listaSecaderos = listarSecaderos();
         Secadero secadero = buscarSecadero(idSecadero);
         if (secadero != null) {
             secadero.setCuit(cuit);
             secadero.setRazonSocial(razonSocial);
             secadero.setCosechas(cosechas);
             this.repositorio.modificar(secadero);
+            
+            //Control de CUIT
+            for (int i=0; i<listaSecaderos.size();i++){
+                if (secadero.getCuit() == listaSecaderos.get(i).getCuit() && secadero.getIdSecadero() != listaSecaderos.get(i).getIdSecadero()){
+                  this.repositorio.descartarTransaccion();
+                  throw new IllegalArgumentException("Ya existe un secadero con ese CUIT");
+                  }
+              }
             this.repositorio.confirmarTransaccion();
         } else {
             this.repositorio.descartarTransaccion();
