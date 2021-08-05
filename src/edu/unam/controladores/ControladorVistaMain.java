@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+import edu.unam.vistas.VistaUtils;
 
 //import javax.swing.Action;
 
@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 //import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ControladorVistaMain implements Initializable {
@@ -98,6 +99,11 @@ public class ControladorVistaMain implements Initializable {
         intercambiarBotones(btnCuadros);
         stageEvento.setTitle("La Verde S.A. Management - CUADROS");
         cambiante.getChildren().addAll(controlador.getContenedor().getChildren());
+    }
+
+    @FXML
+    private void mostrarAbout(ActionEvent event) throws IOException {
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Acerca de", "La Verde S.A. Management", "Trabajo Integrador para la cátedra 'Programación Orientada a Objetos I' de la carrera de Licenciatura En Sistemas de Información, en la Universidad Nacional de Misiones.\n \n Equipo:\n Antoniak, Rodrigo Lionel. \n Paredes, Fernando Iván. \n Rodríguez, Facundo Joel. \n\n Docente: Biale, Claudio Omar.\n\n https://github.com/fivanparedes/la-verde-mgmnt/ \n Año 2021.");
     }
 
     private void intercambiarBotones(Button btn) {
