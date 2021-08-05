@@ -298,7 +298,7 @@ public class ControladorVistaCosechas implements Initializable {
 
     @FXML
     private void mostrarAyuda() {
-        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n ");
+        VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Cosechas", "Mensaje de ayuda:", "Solo se pueden agregar nuevas cosechas si los campos están llenos. En caso de seleccionar una lista (ya sea Cuadros o Empleados), presionar 'Cambiar' para modificar ese mismo campo con la referencia a la clase deseada (ID). \n Los pesos deben ser anotados con punto(.) como separador de la parte entera y la decimal.\n ");
     }
 
     /* Este procedimiento introduce los valores del campo seleccionado en los campos de texto respectivos, cargando tambien las listas de cuadros y empleados */
