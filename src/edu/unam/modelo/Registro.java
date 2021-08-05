@@ -2,34 +2,33 @@ package edu.unam.modelo;
 
 import java.util.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 
 @Entity
 public class Registro extends Cosecha {
     private float pesoReg;
-    private LocalDateTime tiempoReg;
+    private LocalDate tiempoReg;
 
     public Registro() {
         super();
         this.setPesoReg(0.0f);
-        this.setTiempoReg(LocalDateTime.now());
+        this.setTiempoReg(LocalDate.now());
     }
 
     public Registro(float pesoReg) {
         super();
         this.setPesoReg(pesoReg);
-        this.setTiempoReg(LocalDateTime.now());
+        this.setTiempoReg(LocalDate.now());
     }
 
     public Registro(float pesoReg, LocalDate fecha) {
         super(fecha);
         this.setPesoReg(pesoReg);
-        this.setTiempoReg(LocalDateTime.now());
+        this.setTiempoReg(LocalDate.now());
     }
 
-    public Registro(float pesoReg, LocalDate fecha, LocalDateTime tiempoReg) {
+    public Registro(float pesoReg, LocalDate fecha, LocalDate tiempoReg) {
         super(fecha);
         this.setPesoReg(pesoReg);
         this.setTiempoReg(tiempoReg);
@@ -38,11 +37,11 @@ public class Registro extends Cosecha {
     public Registro(float pesoEnt, LocalDate fecha, List<Cuadro> cuadros, List<Empleado> empleados, Secadero secadero) {
         super(fecha, cuadros, empleados, secadero);
         this.setPesoReg(pesoEnt);
-        this.setTiempoReg(LocalDateTime.now());
+        this.setTiempoReg(LocalDate.now());
     }
 
     public Registro(float pesoEnt, LocalDate fecha, List<Cuadro> cuadros, List<Empleado> empleados, Secadero secadero,
-            LocalDateTime tiempoReg) {
+            LocalDate tiempoReg) {
         super(fecha, cuadros, empleados, secadero);
         this.setPesoReg(pesoEnt);
         this.setTiempoReg(tiempoReg);
@@ -52,7 +51,7 @@ public class Registro extends Cosecha {
         return this.pesoReg;
     }
 
-    public LocalDateTime getTiempoReg() {
+    public LocalDate getTiempoReg() {
         return this.tiempoReg;
     }
 
@@ -60,7 +59,7 @@ public class Registro extends Cosecha {
         this.pesoReg = pesoReg;
     }
 
-    public void setTiempoReg(LocalDateTime tiempoReg) {
+    public void setTiempoReg(LocalDate tiempoReg) {
         this.tiempoReg = tiempoReg;
     }
 }

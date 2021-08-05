@@ -1,19 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="contenedor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.controladores.ControladorVistaCosechas">
    <children>
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="550.0" prefWidth="675.0" style="-fx-background-color: blue;" VBox.vgrow="ALWAYS">
-         <children>
-            <Label fx:id="label" alignment="CENTER" style="-fx-background-color: green;" text="Gestionar cosechas">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1150.0" VBox.vgrow="ALWAYS">
+      <children>
+        <Label fx:id="title" alignment="CENTER" layoutX="415.0" layoutY="14.0" style="&#10;" text="Gestionar cosechas" textAlignment="CENTER" wrapText="false">
+          <font>
+            <Font name="DejaVu Sans ExtraLight" size="30.0" />
+          </font>
+        </Label>
+            <TableView fx:id="tabla" editable="true" layoutX="640.0" layoutY="94.0" prefHeight="525.0" prefWidth="350.0">
+              <columns>
+                  <TableColumn fx:id="columnaId" editable="false" prefWidth="100.0" text="ID" />
+                  <TableColumn fx:id="columnaFecha" editable="false" prefWidth="150.0" text="Fecha" />
+                  <TableColumn fx:id="columnaSecadero" editable="false" prefWidth="100.0" text="Secadero" />
+              </columns>
+            </TableView>
+            <Label fx:id="editWarningLabel" layoutX="323.0" layoutY="233.0" prefHeight="21.0" prefWidth="489.0" textAlignment="CENTER">
                <font>
-                  <Font size="39.0" />
-               </font></Label>
-         </children>
-      </AnchorPane>
+                  <Font name="DejaVu Sans Mono Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnAdd" layoutX="1010.0" layoutY="260.0" mnemonicParsing="false" onAction="#clicNuevo" prefHeight="24.0" prefWidth="76.0" text="+" />
+            <Button fx:id="btnEliminar" layoutX="1010.0" layoutY="300.0" mnemonicParsing="false" onAction="#clicEliminar" prefHeight="24.0" prefWidth="76.0" text="-" />
+            <Button fx:id="btnCambiar" layoutX="1010.0" layoutY="340.0" mnemonicParsing="false" onAction="#cambiarDatos" prefHeight="24.0" prefWidth="76.0" text="Cambiar" />
+            <Label layoutX="60.0" layoutY="99.0" text="Secadero" />
+            <Label layoutX="35.0" layoutY="138.0" text="Peso Entrega" />
+            <Label layoutX="31.0" layoutY="179.0" text="Peso Registro" />
+            <Label layoutX="55.0" layoutY="223.0" text="ID Cuadro" />
+            <Label layoutX="320.0" layoutY="99.0" text="Fecha Cosecha" />
+            <Label layoutX="322.0" layoutY="138.0" text="Fecha Entrega" />
+            <Label layoutX="318.0" layoutY="179.0" text="Fecha Registro" />
+            <Label layoutX="332.0" layoutY="223.0" text="ID Empleado" />
+            <TextField fx:id="fieldSecadero" layoutX="127.0" layoutY="95.0" onKeyTyped="#showEditWarning" />
+            <DatePicker fx:id="fieldFecha" layoutX="424.0" layoutY="95.0" onKeyTyped="#showEditWarning" prefHeight="24.0" prefWidth="171.0" />
+            <TextField fx:id="fieldPesoEnt" layoutX="127.0" layoutY="134.0" onKeyTyped="#showEditWarning" />
+            <DatePicker fx:id="fieldTiempoEnt" layoutX="424.0" layoutY="134.0" onAction="#showEditWarning" prefHeight="24.0" prefWidth="171.0" />
+            <TextField fx:id="fieldPesoReg" layoutX="127.0" layoutY="175.0" onKeyTyped="#showEditWarning" />
+            <DatePicker fx:id="fieldTiempoReg" layoutX="424.0" layoutY="175.0" onAction="#showEditWarning" prefHeight="24.0" prefWidth="171.0" />
+            <TextField fx:id="fieldCuadro" layoutX="127.0" layoutY="219.0" onKeyTyped="#showEditWarning" />
+            <TextField fx:id="fieldEmpleado" layoutX="424.0" layoutY="219.0" onKeyTyped="#showEditWarning" />
+            <Button fx:id="btnHelp" layoutX="741.0" layoutY="20.0" mnemonicParsing="false" onAction="#mostrarAyuda" text="?" />
+            <TableView fx:id="cuadros" layoutX="50.0" layoutY="260.0" prefHeight="360.0" prefWidth="130.0">
+              <columns>
+                <TableColumn fx:id="columnaIdCuadro" prefWidth="130.0" resizable="false" text="Cuadros" />
+              </columns>
+            </TableView>
+            <TableView fx:id="empleados" layoutX="340.0" layoutY="260.0" prefHeight="360.0" prefWidth="130.0">
+              <columns>
+                <TableColumn fx:id="columnaIdEmpleado" prefWidth="130.0" resizable="false" text="Empleados" />
+              </columns>
+            </TableView>
+            <Button fx:id="agregarCuadro" layoutX="200.0" layoutY="360.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="+" />
+            <Button fx:id="quitarCuadro" layoutX="200.0" layoutY="400.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="-" />
+            <Button fx:id="cambiarCuadro" layoutX="200.0" layoutY="440.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="Cambiar" />
+            <Button fx:id="agregarEmpleado" layoutX="490.0" layoutY="360.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="+" />
+            <Button fx:id="quitarEmpleado" layoutX="490.0" layoutY="400.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="-" />
+            <Button fx:id="cambiarEmpleado" layoutX="490.0" layoutY="440.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="76.0" text="Cambiar" />
+      </children>
+    </AnchorPane>
    </children>
 </VBox>

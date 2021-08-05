@@ -2,7 +2,7 @@ package edu.unam.servicios;
 
 import edu.unam.repositorio.Repositorio;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import edu.unam.modelo.Cosecha;
@@ -21,7 +21,7 @@ public class ServicioRegistro extends Servicio {
         return this.repositorio.buscar(Registro.class, idCosecha);
     }
 
-    public void agregarRegistro(int idCosecha, float pesoReg, LocalDateTime tiempoReg) {
+    public void agregarRegistro(int idCosecha, float pesoReg, LocalDate tiempoReg) {
         this.repositorio.iniciarTransaccion();
         Cosecha cosecha = this.repositorio.buscar(Cosecha.class, idCosecha);
         if (cosecha == null) {
@@ -32,7 +32,7 @@ public class ServicioRegistro extends Servicio {
         this.repositorio.confirmarTransaccion();
     }
 
-    public int editarRegistro(int idCosecha, float pesoReg, LocalDateTime tiempoReg) {
+    public int editarRegistro(int idCosecha, float pesoReg, LocalDate tiempoReg) {
         this.repositorio.iniciarTransaccion();
         Cosecha cosecha = this.repositorio.buscar(Cosecha.class, idCosecha);
         if (cosecha == null) {
