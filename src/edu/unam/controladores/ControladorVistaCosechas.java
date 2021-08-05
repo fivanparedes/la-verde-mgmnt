@@ -262,6 +262,41 @@ public class ControladorVistaCosechas implements Initializable {
     }
 
     @FXML
+    private void agregarCuadro() {
+        int idCuadro;
+        Cuadro busqueda;
+        List<Cuadro> aux;
+        aux = cuadros.getItems();
+        cuadros.getSelectionModel().clearSelection();
+        try {
+            idCuadro = Integer.getInteger(fieldCuadro.getText()).intValue();
+            busqueda = ControladorVistaCuadros.getServicioCuadro().buscarCuadro(idCuadro);
+            if (busqueda != null) {
+                aux.add(busqueda);
+                cuadros.setItems(FXCollections.observableList(aux));
+            }        
+        } catch (Exception e) {
+            VistaUtils.mostrarAlerta(AlertType.ERROR, "Error", "Error al cargar", e.getMessage());
+        }
+    }
+
+    @FXML
+    private void quitarCuadro() {
+        Cuadro busqueda;
+        List<Cuadro> aux;
+        aux = cuadros.getItems();
+        busqueda = cuadros.getSelectionModel().getSelectedItem();
+        aux.remove(busqueda);
+        cuadros.setItems(FXCollections.observableList(aux)); 
+    }
+
+    @FXML
+    private void cambiarCuadro() {
+        quitarEmpleado();
+        agregarEmpleado();  
+    }
+
+    @FXML
     private void mostrarAyuda() {
         VistaUtils.mostrarAlerta(AlertType.INFORMATION, "Ayuda - Empleados", "Mensaje de ayuda:", "Solo se pueden agregar registros nuevos si los campos están llenos. En caso de seleccionar uno en la lista, presionar 'Cambiar' para modificar ese mismo registro con los datos de los campos. \n Los datos numericos como DNI y CUIL van sin puntos ni comas.\n ");
     }
