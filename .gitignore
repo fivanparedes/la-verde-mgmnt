@@ -13,6 +13,7 @@
 ### LIB FOLDER ###
 lib/*
 lib/
+*.jar
 
 # Local History for Visual Studio Code
 .history/
