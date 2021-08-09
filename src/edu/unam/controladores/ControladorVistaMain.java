@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import edu.unam.App;
 import edu.unam.vistas.VistaUtils;
 
 //import javax.swing.Action;
@@ -33,7 +34,7 @@ public class ControladorVistaMain implements Initializable {
     private void mostrarEmpleados(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnEmpleados.getScene().getWindow();
         cambiante.getChildren().clear();
-        FXMLLoader fxmlEmp = new FXMLLoader(getClass().getResource("../vistas/VistaEmpleados.fxml"));     
+        FXMLLoader fxmlEmp = new FXMLLoader(App.class.getResource("vistas/VistaEmpleados.fxml"));     
         fxmlEmp.load();      
         ControladorVistaEmpleados controlador = fxmlEmp.<ControladorVistaEmpleados>getController();
         stageEvento.setTitle("La Verde S.A. Management - EMPLEADOS");
@@ -45,7 +46,7 @@ public class ControladorVistaMain implements Initializable {
     private void mostrarProductores(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnProductores.getScene().getWindow();
         cambiante.getChildren().clear();
-        FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaProductores.fxml"));
+        FXMLLoader fxmlView = new FXMLLoader(App.class.getResource("vistas/VistaProductores.fxml"));
         fxmlView.load();
         ControladorVistaProductores controlador = fxmlView.<ControladorVistaProductores>getController();
         intercambiarBotones(btnProductores);
@@ -57,7 +58,7 @@ public class ControladorVistaMain implements Initializable {
     private void mostrarSecaderos(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnSecaderos.getScene().getWindow();
         cambiante.getChildren().clear();
-        FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaSecaderos.fxml"));
+        FXMLLoader fxmlView = new FXMLLoader(App.class.getResource("vistas/VistaSecaderos.fxml"));
         fxmlView.load();
         ControladorVistaSecaderos controlador = fxmlView.<ControladorVistaSecaderos>getController();
         intercambiarBotones(btnSecaderos);
@@ -69,7 +70,7 @@ public class ControladorVistaMain implements Initializable {
     private void mostrarCosechas(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnCosechas.getScene().getWindow();
         cambiante.getChildren().clear();
-        FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCosechas.fxml"));
+        FXMLLoader fxmlView = new FXMLLoader(App.class.getResource("vistas/VistaCosechas.fxml"));
         fxmlView.load();
         ControladorVistaCosechas controlador = fxmlView.<ControladorVistaCosechas>getController();
         intercambiarBotones(btnCosechas);
@@ -81,7 +82,7 @@ public class ControladorVistaMain implements Initializable {
     private void mostrarLotes(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnLotes.getScene().getWindow();
         cambiante.getChildren().clear();
-        FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaLotes.fxml"));
+        FXMLLoader fxmlView = new FXMLLoader(App.class.getResource("vistas/VistaLotes.fxml"));
         fxmlView.load();
         ControladorVistaLotes controlador = fxmlView.<ControladorVistaLotes>getController();
         intercambiarBotones(btnLotes);
@@ -93,7 +94,7 @@ public class ControladorVistaMain implements Initializable {
     private void mostrarCuadros(ActionEvent event) throws IOException {
         Stage stageEvento = (Stage)btnCuadros.getScene().getWindow();
         cambiante.getChildren().clear();
-        FXMLLoader fxmlView = new FXMLLoader(getClass().getResource("../vistas/VistaCuadros.fxml"));
+        FXMLLoader fxmlView = new FXMLLoader(App.class.getResource("vistas/VistaCuadros.fxml"));
         fxmlView.load();
         ControladorVistaCuadros controlador = fxmlView.<ControladorVistaCuadros>getController();
         intercambiarBotones(btnCuadros);

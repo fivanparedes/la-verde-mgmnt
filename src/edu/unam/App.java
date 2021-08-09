@@ -52,7 +52,7 @@ public class App extends Application {
         ControladorVistaLotes.enlazarServicio(sl, sp);
         ControladorVistaCuadros.enlazarServicio(scu, sl);
         ControladorVistaCosechas.enlazarServicio(co, en, reg);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("./vistas/VistaMain.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vistas/VistaMain.fxml"));     
         Parent root = (Parent)fxmlLoader.load();
         //ControladorVistaMain controlador = fxmlLoader.<ControladorVistaMain>getController();
         Scene scene = new Scene(root, 1360, 700);        
