@@ -12,7 +12,7 @@ Course approved!
 ## Installation
 No installation required, just download the zip and run it via commandline.
 
-For other operating systems than linux, download the corresponding [JavaFX libs](https://gluonhq.com/products/javafx/) and point to its `lib` folder using the `--module-path` argument.
+For other operating systems than linux, download the corresponding [JavaFX libs](https://gluonhq.com/products/javafx/) and point to its `lib` folder using the `--module-path` argument. Downloads for the JPA are [here](https://www.eclipse.org/eclipselink/#download), and the PostgreSQL JDBC42.2 [here](https://jdbc.postgresql.org/download.html).
 
 
 ## Running
